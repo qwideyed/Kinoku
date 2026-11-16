@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinoku — Creator & Sponsor Marketplace</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-name">Kinoku</span>
+        <span class="brand-tag">PROTOTYPE</span>
+      </div>
+
+      <div class="role-switcher" role="group" aria-label="Switch user role">
+        <button id="roleCreatorBtn" class="role-btn active" data-role="creator">Creator View</button>
+        <button id="roleCompanyBtn" class="role-btn" data-role="company">Company View</button>
+      </div>
+
+      <button id="primaryCreateBtn" class="btn btn-primary">+ Pitch Upcoming Video</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <span id="heroBadge" class="hero-badge">Creator Mode • Keep 100% of your rate</span>
+        <h1 id="heroTitle">Find brands ready to sponsor your next video.</h1>
+        <p id="heroSubtitle">Browse active product campaigns from companies looking for creators, or pitch the exact video you are working on right now.</p>
+      </div>
+      <div class="hero-escrow-card">
+        <div class="escrow-title">Safe Deal Middleman Protection</div>
+        <p class="escrow-desc">Companies fund the deal + a 5% protection fee upfront. Kinoku holds it safely until the video goes live—or refunds 100% (including the 5% fee) if the deadline is missed.</p>
+      </div>
+    </section>
+
+    <section class="controls">
+      <div class="board-tabs">
+        <button id="tabPitches" class="tab-btn" data-board="pitch">
+          Upcoming Video Pitches <span id="pitchCount" class="count-pill">0</span>
+        </button>
+        <button id="tabCampaigns" class="tab-btn active" data-board="campaign">
+          Company Campaigns <span id="campaignCount" class="count-pill">0</span>
+        </button>
+      </div>
+
+      <div class="filter-bar">
+        <input
+          type="search"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search video ideas, products, niches, or creators..."
+        />
+        <div id="categoryFilters" class="category-pills">
+          <button class="cat-pill active" data-category="All">All</button>
+          <button class="cat-pill" data-category="Tech & Gaming">Tech & Gaming</button>
+          <button class="cat-pill" data-category="Lifestyle & Vlog">Lifestyle & Vlog</button>
+          <button class="cat-pill" data-category="Finance & Business">Finance & Business</button>
+          <button class="cat-pill" data-category="Education">Education</button>
+          <button class="cat-pill" data-category="Entertainment">Entertainment</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="feedGrid" class="feed-grid"></section>
+
+    <div id="emptyState" class="empty-state hidden">
+      <h3>No listings match your filter</h3>
+      <p>Try clearing your search term or switching categories.</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>Kinoku Layer 1 — Two-Way Sponsorship Board</span>
+      <button id="resetDemoBtn" class="btn-link">Reset Demo Data</button>
+    </div>
+  </footer>
+
+  <!-- Create Listing Modal -->
+  <div id="createModal" class="modal-backdrop hidden" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Create New Listing</h2>
+        <button id="closeCreateModal" class="icon-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="post-type-toggle">
+        <button type="button" id="postTypePitch" class="type-btn active" data-type="pitch">Creator Video Pitch</button>
+        <button type="button" id="postTypeCompany" class="type-btn" data-type="campaign">Company Campaign</button>
+      </div>
+
+      <form id="createForm" class="form">
+        <div class="form-row">
+          <label for="inputAuthor" id="authorLabel">Creator Name / Channel Handle</label>
+          <input type="text" id="inputAuthor" required placeholder="e.g., @AlexBuilds" />
+        </div>
+
+        <div class="form-row two-col">
+          <div>
+            <label for="inputCategory">Category</label>
+            <select id="inputCategory" required>
+              <option value="Tech & Gaming">Tech & Gaming</option>
+              <option value="Lifestyle & Vlog">Lifestyle & Vlog</option>
+              <option value="Finance & Business">Finance & Business</option>
+              <option value="Education">Education</option>
+              <option value="Entertainment">Entertainment</option>
+            </select>
+          </div>
+          <div>
+            <label for="inputTimeline">Target Upload / Deadline</label>
+            <input type="text" id="inputTimeline" required placeholder="e.g., Dropping in 10 days" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="inputTitle" id="titleLabel">Working Video Title</label>
+          <input type="text" id="inputTitle" required placeholder="e.g., I Tested 5 Budget Desk Setups Under $200" />
+        </div>
+
+        <div class="form-row">
+          <label for="inputDetails" id="detailsLabel">Video Concept & Sponsor Integration Idea</label>
+          <textarea id="inputDetails" rows="3" required placeholder="Describe what you're filming, your audience, and how a sponsor fits naturally..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <label for="inputAmount" id="amountLabel">Asking Sponsorship Rate ($ USD)</label>
+          <input type="number" id="inputAmount" min="10" step="5" required placeholder="450" />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Publish to Board</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Listing Quick Preview & Fee Calculator Modal -->
+  <div id="previewModal" class="modal-backdrop hidden" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="previewModalTitle">Listing Details</h2>
+        <button id="closePreviewModal" class="icon-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div id="previewContent"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
