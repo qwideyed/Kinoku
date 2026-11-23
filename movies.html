@@ -18,14 +18,16 @@
   --donate-hover: #c94e36;
   --discord: #5865F2;
   --discord-hover: #4752c4;
-  --tag-movietv: #392948;
-  --tag-movietv-text: #c58af9;
   --score-green: #1e3a2f;
   --score-green-text: #81c995;
   --score-yellow: #3d331e;
   --score-yellow-text: #fdd663;
   --score-red: #3f2224;
   --score-red-text: #f28b82;
+  --status-offline: #3d2c1e;
+  --status-offline-text: #f6ad55;
+  --status-archived: #2c2f38;
+  --status-archived-text: #a0a8b8;
 }
 
 * {
@@ -274,6 +276,13 @@ main {
   color: var(--text-muted);
 }
 
+.controls-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
 .filter-pills {
   display: flex;
   flex-wrap: wrap;
@@ -321,8 +330,9 @@ main {
 
 .site-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 14px;
+  align-items: start;
 }
 
 .site-card {
@@ -332,7 +342,6 @@ main {
   padding: 15px 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 12px;
   transition: border-color 0.15s, background-color 0.15s;
 }
@@ -369,6 +378,60 @@ main {
   margin-top: 2px;
 }
 
+.preview-toggle {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+}
+
+.preview-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.preview-box {
+  display: none;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.preview-box.open {
+  display: block;
+}
+
+.preview-box img {
+  width: 100%;
+  height: 155px;
+  object-fit: cover;
+  display: block;
+}
+
+.preview-placeholder {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 .site-card-bottom {
   display: flex;
   align-items: center;
@@ -394,11 +457,6 @@ main {
   white-space: nowrap;
 }
 
-.badge-MovieTV {
-  background-color: var(--tag-movietv);
-  color: var(--tag-movietv-text);
-}
-
 .score-Green {
   background-color: var(--score-green);
   color: var(--score-green-text);
@@ -412,6 +470,16 @@ main {
 .score-Red {
   background-color: var(--score-red);
   color: var(--score-red-text);
+}
+
+.status-Offline {
+  background-color: var(--status-offline);
+  color: var(--status-offline-text);
+}
+
+.status-Archived {
+  background-color: var(--status-archived);
+  color: var(--status-archived-text);
 }
 
 .report-link {
@@ -435,68 +503,6 @@ main {
   border-radius: 8px;
   text-align: center;
   padding: 44px 20px;
-  color: var(--text-muted);
-}
-
-details.archive-panel {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px 20px;
-  margin-top: 8px;
-}
-
-details.archive-panel summary {
-  font-size: 0.94rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-details.archive-panel summary::-webkit-details-marker {
-  display: none;
-}
-
-details.archive-panel summary::after {
-  content: "+";
-  font-size: 1.1rem;
-  color: var(--accent);
-}
-
-details.archive-panel[open] summary::after {
-  content: "−";
-}
-
-.archive-list {
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 10px;
-}
-
-.archive-item {
-  background-color: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 10px 12px;
-  font-size: 0.84rem;
-  color: var(--text-muted);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.archive-tag {
-  font-size: 0.72rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background-color: var(--surface-alt);
   color: var(--text-muted);
 }
 
@@ -652,23 +658,26 @@ footer {
       <span class="entry-count" id="entryCount">0 sites</span>
     </div>
 
-    <div class="filter-pills">
-      <button type="button" class="filter-btn active" data-score="All">All</button>
-      <button type="button" class="filter-btn" data-score="Green"><span class="score-dot dot-green"></span>Green</button>
-      <button type="button" class="filter-btn" data-score="Yellow"><span class="score-dot dot-yellow"></span>Yellow</button>
-      <button type="button" class="filter-btn" data-score="Red"><span class="score-dot dot-red"></span>Red</button>
+    <div class="controls-group">
+      <div class="filter-pills" id="statusFilters">
+        <button type="button" class="filter-btn active" data-status="Online">Online</button>
+        <button type="button" class="filter-btn" data-status="Offline">Offline</button>
+        <button type="button" class="filter-btn" data-status="Archived">Archived</button>
+      </div>
+
+      <div class="filter-pills" id="scoreFilters">
+        <button type="button" class="filter-btn active" data-score="All">All Scores</button>
+        <button type="button" class="filter-btn" data-score="Green"><span class="score-dot dot-green"></span>Green</button>
+        <button type="button" class="filter-btn" data-score="Yellow"><span class="score-dot dot-yellow"></span>Yellow</button>
+        <button type="button" class="filter-btn" data-score="Red"><span class="score-dot dot-red"></span>Red</button>
+      </div>
     </div>
   </div>
 
   <div class="site-grid" id="siteGrid"></div>
   <div class="empty-state" id="emptyState" style="display: none;">
-    No Movies/TV sites match the selected Ad-Score filter.
+    No Movies/TV sites match the selected filters.
   </div>
-
-  <details class="archive-panel">
-    <summary>Archived / Offline Sites (<span id="archiveCount">0</span>)</summary>
-    <div class="archive-list" id="archiveList"></div>
-  </details>
 </main>
 
 <footer>
@@ -709,17 +718,14 @@ footer {
 
 <script>
 const SITES = [
-  { name: 'TMDB', url: 'https://www.themoviedb.org', adScore: 'Green' },
-  { name: 'Letterboxd', url: 'https://letterboxd.com', adScore: 'Green' },
-  { name: 'Trakt', url: 'https://trakt.tv', adScore: 'Green' },
-  { name: 'JustWatch', url: 'https://www.justwatch.com', adScore: 'Green' }
+  { name: 'TMDB', url: 'https://www.themoviedb.org', adScore: 'Green', status: 'Online', image: '' },
+  { name: 'Letterboxd', url: 'https://letterboxd.com', adScore: 'Green', status: 'Online', image: '' },
+  { name: 'Trakt', url: 'https://trakt.tv', adScore: 'Green', status: 'Online', image: '' },
+  { name: 'JustWatch', url: 'https://www.justwatch.com', adScore: 'Green', status: 'Online', image: '' },
+  { name: 'Soap2Day', url: 'https://soap2day.to', adScore: 'Yellow', status: 'Archived', image: '' }
 ];
 
-const ARCHIVED_SITES = [
-  { name: 'Soap2Day', domain: 'soap2day.to', status: 'Shut Down' },
-  { name: 'RARBG', domain: 'rarbg.to', status: 'Shut Down' }
-];
-
+let activeStatus = 'Online';
 let activeScore = 'All';
 
 function extractDomain(url) {
@@ -741,7 +747,11 @@ function renderGrid() {
   const emptyState = document.getElementById('emptyState');
   const countLabel = document.getElementById('entryCount');
 
-  const filtered = SITES.filter(site => activeScore === 'All' || site.adScore === activeScore);
+  const filtered = SITES.filter(site => {
+    const matchesStatus = site.status === activeStatus;
+    const matchesScore = activeScore === 'All' || site.adScore === activeScore;
+    return matchesStatus && matchesScore;
+  });
 
   countLabel.textContent = `${filtered.length} ${filtered.length === 1 ? 'site' : 'sites'}`;
 
@@ -752,8 +762,15 @@ function renderGrid() {
   }
 
   emptyState.style.display = 'none';
-  grid.innerHTML = filtered.map(site => {
+  grid.innerHTML = filtered.map((site, idx) => {
     const score = site.adScore || 'Green';
+    const statusBadge = site.status !== 'Online'
+      ? `<span class="badge status-${escapeHtml(site.status)}">${escapeHtml(site.status)}</span>`
+      : '';
+    const previewInner = site.image
+      ? `<img src="${escapeHtml(site.image)}" alt="${escapeHtml(site.name)} preview" loading="lazy">`
+      : `<div class="preview-placeholder">No preview image added yet for ${escapeHtml(site.name)}</div>`;
+
     return `
       <div class="site-card">
         <div class="site-card-top">
@@ -763,11 +780,15 @@ function renderGrid() {
             </a>
             <span class="site-domain">${escapeHtml(extractDomain(site.url))}</span>
           </div>
+          <button type="button" class="preview-toggle" data-target="preview-${idx}" title="Toggle site preview">+</button>
+        </div>
+        <div class="preview-box" id="preview-${idx}">
+          ${previewInner}
         </div>
         <div class="site-card-bottom">
           <div class="badges-wrap">
-            <span class="badge badge-MovieTV">Movies/TV</span>
             <span class="badge score-${escapeHtml(score)}">Ad-Score: ${escapeHtml(score)}</span>
+            ${statusBadge}
           </div>
           <a class="report-link" href="submit.html">Report</a>
         </div>
@@ -776,22 +797,27 @@ function renderGrid() {
   }).join('');
 }
 
-function renderArchive() {
-  const archiveList = document.getElementById('archiveList');
-  const archiveCount = document.getElementById('archiveCount');
-  archiveCount.textContent = ARCHIVED_SITES.length;
+document.getElementById('siteGrid').addEventListener('click', e => {
+  const btn = e.target.closest('.preview-toggle');
+  if (!btn) return;
+  const box = document.getElementById(btn.dataset.target);
+  if (!box) return;
+  const isOpen = box.classList.toggle('open');
+  btn.textContent = isOpen ? '−' : '+';
+});
 
-  archiveList.innerHTML = ARCHIVED_SITES.map(item => `
-    <div class="archive-item">
-      <span>${escapeHtml(item.name)} (${escapeHtml(item.domain)})</span>
-      <span class="archive-tag">${escapeHtml(item.status)}</span>
-    </div>
-  `).join('');
-}
-
-document.querySelectorAll('.filter-btn').forEach(btn => {
+document.querySelectorAll('#statusFilters .filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('#statusFilters .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeStatus = btn.dataset.status;
+    renderGrid();
+  });
+});
+
+document.querySelectorAll('#scoreFilters .filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#scoreFilters .filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeScore = btn.dataset.score;
     renderGrid();
@@ -815,7 +841,6 @@ document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
 });
 
 renderGrid();
-renderArchive();
 </script>
 </body>
 </html>
