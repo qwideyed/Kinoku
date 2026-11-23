@@ -283,6 +283,19 @@ main {
   gap: 12px;
 }
 
+.filter-divider {
+  width: 1px;
+  height: 22px;
+  background-color: var(--border);
+}
+
+@media (max-width: 640px) {
+  .filter-divider {
+    width: 100%;
+    height: 1px;
+  }
+}
+
 .filter-pills {
   display: flex;
   flex-wrap: wrap;
@@ -664,6 +677,8 @@ footer {
         <button type="button" class="filter-btn" data-status="Offline">Offline</button>
         <button type="button" class="filter-btn" data-status="Archived">Archived</button>
       </div>
+
+      <span class="filter-divider" aria-hidden="true"></span>
 
       <div class="filter-pills" id="scoreFilters">
         <button type="button" class="filter-btn active" data-score="All">All Scores</button>
