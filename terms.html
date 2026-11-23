@@ -1,1 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Kinoku</title>
+<style>
+:root {
+  --bg: #0e1014;
+  --surface: #151820;
+  --surface-alt: #1b1f29;
+  --border: #262b36;
+  --text: #e6e8ec;
+  --text-muted: #969dab;
+  --accent: #4c8bf5;
+  --accent-hover: #3b7ae4;
+  --donate: #e05d44;
+  --donate-hover: #c94e36;
+  --discord: #5865F2;
+  --discord-hover: #4752c4;
+}
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  justify-self: start;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.center-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 6px 11px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background-color: var(--surface-alt);
+  text-decoration: none;
+}
+
+.nav-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-actions .btn {
+  min-width: 102px;
+}
+
+@media (max-width: 960px) {
+  .nav-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .center-nav {
+    grid-column: 1 / -1;
+    order: 3;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+  }
+}
+
+.btn {
+  background-color: var(--surface-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  height: 34px;
+  padding: 0 13px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  background-color: #232836;
+  border-color: #3a4150;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-donate {
+  background-color: var(--donate);
+  border-color: var(--donate);
+  color: #ffffff;
+}
+
+.btn-donate:hover {
+  background-color: var(--donate-hover);
+  border-color: var(--donate-hover);
+}
+
+.btn-discord {
+  background-color: var(--discord);
+  border-color: var(--discord);
+  color: #ffffff;
+}
+
+.btn-discord:hover {
+  background-color: var(--discord-hover);
+  border-color: var(--discord-hover);
+}
+
+main {
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 20px 52px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px 26px;
+}
+
+.panel h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.last-updated {
+  display: inline-block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.panel p.intro {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  margin-bottom: 18px;
+}
+
+.toc-box {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+}
+
+.toc-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 6px 14px;
+  font-size: 0.85rem;
+}
+
+.terms-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.terms-section {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 20px;
+  scroll-margin-top: 76px;
+}
+
+.terms-section h2 {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.terms-section p {
+  font-size: 0.89rem;
+  color: var(--text-muted);
+  margin-bottom: 9px;
+}
+
+.terms-section p:last-child {
+  margin-bottom: 0;
+}
+
+.terms-section ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  margin-bottom: 8px;
+}
+
+.terms-section ul:last-child {
+  margin-bottom: 0;
+}
+
+.terms-section ul li {
+  padding-left: 14px;
+  position: relative;
+}
+
+.terms-section ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 300;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 440px;
+  padding: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: var(--text);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.donate-options {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.donate-card {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.donate-card span {
+  font-size: 0.88rem;
+}
+
+.donate-card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.donate-card a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 18px 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer-disclaimer {
+  max-width: 820px;
+  margin: 0 auto 8px;
+  line-height: 1.45;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.footer-links a.active {
+  color: var(--text);
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-container">
+    <a href="index.html" class="brand">
+      <span class="brand-title">Kinoku</span>
+    </a>
+
+    <nav class="center-nav">
+      <a href="movies-tv.html" class="nav-link">Movies/TV</a>
+      <a href="anime.html" class="nav-link">Anime</a>
+      <a href="hentai.html" class="nav-link">Hentai</a>
+      <a href="index.html" class="nav-link">Index</a>
+      <a href="torrets.html" class="nav-link">Torrets</a>
+      <a href="forums.html" class="nav-link">Forums</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="submit.html" class="btn btn-primary">Submit Site</a>
+      <button class="btn btn-donate" id="openDonateBtn" type="button">&#9829; Donate</button>
+      <a class="btn btn-discord" href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="panel">
+    <h1>Terms of Service</h1>
+    <span class="last-updated">Effective Date: November 23, 2026</span>
+    <p class="intro">
+      Welcome to Kinoku. By accessing, browsing, or submitting suggestions to this website, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please discontinue use of Kinoku immediately.
+    </p>
+
+    <div class="toc-box">
+      <div class="toc-title">Quick Navigation</div>
+      <div class="toc-grid">
+        <a href="#sec-1">1. Nature of Service (No Hosting)</a>
+        <a href="#sec-2">2. Editorial Control &amp; Curation</a>
+        <a href="#sec-3">3. Third-Party Links &amp; External Sites</a>
+        <a href="#sec-4">4. Ad-Score Ratings Disclaimer</a>
+        <a href="#sec-5">5. User Submissions &amp; Link Reports</a>
+        <a href="#sec-6">6. Copyright &amp; DMCA Notice</a>
+        <a href="#sec-7">7. Age Restrictions &amp; Adult Sections</a>
+        <a href="#sec-8">8. Acceptable Use</a>
+        <a href="#sec-9">9. Voluntary Donations</a>
+        <a href="#sec-10">10. Disclaimer of Warranties</a>
+        <a href="#sec-11">11. Limitation of Liability</a>
+        <a href="#sec-12">12. Changes to Terms</a>
+      </div>
+    </div>
+
+    <div class="terms-list">
+      <div class="terms-section" id="sec-1">
+        <h2>1. Nature of Service — No Hosting or Streaming</h2>
+        <p>
+          Kinoku operates strictly as a static web directory and informational link index. Kinoku does not host, upload, store, transcode, stream, mirror, or distribute any movies, television shows, anime, adult media, torrent files, or video streams on its servers or infrastructure.
+        </p>
+        <p>
+          All media referenced or accessible through indexed destinations resides exclusively on independent third-party servers that are neither owned nor controlled by Kinoku or its developer.
+        </p>
+      </div>
+
+      <div class="terms-section" id="sec-2">
+        <h2>2. Editorial Control &amp; Directory Management</h2>
+        <p>
+          The Kinoku directory—including all listed websites, category assignments, ad-score evaluations, and archived entries—is solely curated, managed, and updated by the site developer (Qwideyed).
+        </p>
+        <p>
+          Visitors have read-only access to the live directory and cannot directly alter, remove, or publish entries. Qwideyed reserves the absolute right to add, modify, recategorize, archive, or remove any listing at any time and for any reason without prior notice.
+        </p>
+      </div>
+
+      <div class="terms-section" id="sec-3">
+        <h2>3. Third-Party Links &amp; User Responsibility</h2>
+        <p>
+          Outbound links on Kinoku direct you to external websites operated by independent third parties. Kinoku has no control over the availability, legality, safety, accuracy, or content of those external destinations.
+        </p>
+        <ul>
+          <li>You access all external third-party websites entirely at your own risk.</li>
+          <li>You are solely responsible for ensuring that your use of any external website complies with all local, state, national, and international laws applicable in your jurisdiction.</li>
+          <li>Inclusion of a website in Kinoku does not constitute endorsement, sponsorship, or partnership.</li>
+        </ul>
+      </div>
+
+      <div class="terms-section" id="sec-4">
+        <h2>4. Ad-Score Ratings &amp; Security Notice</h2>
+        <p>
+          Ad-score badges (Green, Yellow, Red) reflect observational testing at the time of review using standard content blockers. Because third-party websites frequently change ad networks, pop-up scripts, and redirect behavior without warning, Kinoku does not guarantee that any listed site will remain ad-free or safe.
+        </p>
+        <p>
+          Visitors are strongly advised to use an active ad-blocker (such as <a href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin</a>) or privacy-focused browser (<a href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave</a>, <a href="https://www.firefox.com/" target="_blank" rel="noopener noreferrer">Firefox</a>, <a href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">DuckDuckGo</a>, or <a href="https://browsehere.net/en/" target="_blank" rel="noopener noreferrer">BrowseHere</a>) whenever opening external links.
+        </p>
+      </div>
+
+      <div class="terms-section" id="sec-5">
+        <h2>5. User Site Suggestions &amp; Link Reports</h2>
+        <p>
+          Visitors may use the Submit Site page or official Discord server to suggest new websites for inclusion or to report broken links, domain changes, or misleading ad-scores. By submitting a suggestion or report, you agree that:
+        </p>
+        <ul>
+          <li>Your submission is voluntary and grants Qwideyed full discretion to review, edit, accept, or ignore it.</li>
+          <li>You will not submit malicious URLs, phishing domains, malware distributors, or illegal content links.</li>
+          <li>Submissions do not automatically publish to the live directory until manually verified.</li>
+        </ul>
+      </div>
+
+      <div class="terms-section" id="sec-6">
+        <h2>6. Copyright &amp; DMCA Policy</h2>
+        <p>
+          Kinoku respects intellectual property rights. Because Kinoku does not host or store any media files, copyright holders seeking the removal of infringing media files must contact the respective third-party hosting website or content provider directly.
+        </p>
+        <p>
+          If you are a copyright owner or authorized agent and believe a specific external link indexed on Kinoku should be removed from our directory, you may notify us via our official community channel with the exact URL on Kinoku and proof of ownership for prompt review and delisting.
+        </p>
+      </div>
+
+      <div class="terms-section" id="sec-7">
+        <h2>7. Age Restrictions &amp; Adult Categories</h2>
+        <p>
+          Certain sections of Kinoku (specifically the Hentai category) index external websites containing sexually explicit or adult-oriented material. You must be at least 18 years of age (or the age of legal majority in your jurisdiction) to access those sections. By navigating to adult categories, you affirm that you meet the legal age requirement and that viewing such index links is lawful in your location.
+        </p>
+      </div>
+
+      <div class="terms-section" id="sec-8">
+        <h2>8. Acceptable Use</h2>
+        <p>
+          When using Kinoku, you agree not to:
+        </p>
+        <ul>
+          <li>Attempt to disrupt, overload, scrape excessively, or perform denial-of-service attacks against Kinoku's hosting infrastructure.</li>
+          <li>Spam the site submission or link reporting forms with automated bots or deceptive URLs.</li>
+          <li>Misrepresent Kinoku as a streaming provider or claim affiliation with Qwideyed without permission.</li>
+        </ul>
+      </div>
+
+      <div class="terms-section" id="sec-9">
+        <h2>9. Voluntary Donations</h2>
+        <p>
+          Any financial contributions made through the Donate modal (via third-party platforms such as Ko-fi or PayPal) are strictly voluntary tips to support ongoing maintenance and hosting costs. Donations are non-refundable and do not purchase special privileges, guaranteed link placements, or editorial influence over the directory.
+        </p>
+      </div>
+
+      <div class="terms-section" id="sec-10">
+        <h2>10. Disclaimer of Warranties</h2>
+        <p>
+          Kinoku is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, either express or implied. Qwideyed makes no guarantees regarding uptime, uninterrupted access, link accuracy, or the safety of third-party destinations.
+        </p>
+      </div>
+
+      <div class="terms-section" id="sec-11">
+        <h2>11. Limitation of Liability</h2>
+        <p>
+          To the fullest extent permitted by applicable law, Kinoku and its developer (Qwideyed) shall not be liable for any direct, indirect, incidental, consequential, or punitive damages—including malware infections, data loss, financial loss, or legal disputes—arising from your use of Kinoku or any external third-party website linked within the index.
+        </p>
+      </div>
+
+      <div class="terms-section" id="sec-12">
+        <h2>12. Modifications to These Terms</h2>
+        <p>
+          Qwideyed reserves the right to update or modify these Terms of Service at any time. Revisions become effective immediately upon posting on this page. Continued use of Kinoku after changes are posted constitutes your acceptance of the updated terms.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-disclaimer">
+    Disclaimer: Kinoku is strictly a web index and does not host, upload, stream, or store any movies, TV shows, anime, or video files on our servers. All links lead to external third-party sites.
+  </div>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html" class="active">Terms of Service</a>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="donateModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Support Kinoku</h2>
+      <button class="close-btn" data-close="donateModal">&times;</button>
+    </div>
+    <p style="font-size: 0.9rem; color: var(--text-muted);">
+      Kinoku is an independent web index. Donations help keep the site maintained and online.
+    </p>
+    <div class="donate-options">
+      <div class="donate-card">
+        <span><strong>Ko-fi</strong> &mdash; One-time tip</span>
+        <a href="https://ko-fi.com" target="_blank" rel="noopener noreferrer">Donate &rarr;</a>
+      </div>
+      <div class="donate-card">
+        <span><strong>PayPal</strong> &mdash; Direct contribution</span>
+        <a href="https://paypal.com" target="_blank" rel="noopener noreferrer">Contribute &rarr;</a>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" data-close="donateModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('openDonateBtn').addEventListener('click', () => {
+  document.getElementById('donateModal').classList.add('open');
+});
+
+document.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById(btn.dataset.close).classList.remove('open');
+  });
+});
+
+document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+  backdrop.addEventListener('click', e => {
+    if (e.target === backdrop) backdrop.classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
