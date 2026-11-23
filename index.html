@@ -82,14 +82,8 @@ header {
   gap: 12px;
 }
 
-.left-nav {
-  justify-self: start;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
 .brand {
+  justify-self: start;
   text-decoration: none;
   color: var(--text);
 }
@@ -143,7 +137,7 @@ header {
   gap: 8px;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 960px) {
   .nav-container {
     grid-template-columns: 1fr 1fr;
   }
@@ -218,11 +212,11 @@ main {
   flex: 1;
 }
 
-.intro-panel {
+.panel {
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 20px 22px;
+  padding: 22px 24px;
   margin-bottom: 24px;
 }
 
@@ -240,16 +234,6 @@ main {
 .intro-about p {
   color: var(--text-muted);
   font-size: 0.92rem;
-}
-
-.disclaimer-notice {
-  margin-top: 12px;
-  padding: 10px 14px;
-  background-color: var(--bg);
-  border-left: 3px solid var(--donate);
-  border-radius: 4px;
-  font-size: 0.86rem;
-  color: var(--text);
 }
 
 .browser-bar {
@@ -333,48 +317,72 @@ main {
 .dot-yellow { background-color: #fdd663; }
 .dot-red { background-color: #f28b82; }
 
-.policy-panel {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 20px 22px;
-  margin-bottom: 24px;
+.page-card {
+  max-width: 680px;
+  margin: 0 auto;
 }
 
-.policy-panel h2 {
-  font-size: 1.1rem;
-  margin-bottom: 12px;
-  color: var(--text);
+.page-card h1 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
 }
 
-.policy-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+.page-card p.sub {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 18px;
 }
 
-@media (min-width: 780px) {
-  .policy-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.policy-box {
+.policy-section {
   background-color: var(--bg);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 14px 16px;
+  padding: 16px;
+  margin-bottom: 14px;
 }
 
-.policy-box h3 {
-  font-size: 0.94rem;
+.policy-section:last-child {
+  margin-bottom: 0;
+}
+
+.policy-section h2 {
+  font-size: 1rem;
   margin-bottom: 6px;
   color: var(--text);
 }
 
-.policy-box p {
+.policy-section p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
   font-size: 0.84rem;
   color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--accent);
 }
 
 .page-header-bar {
@@ -597,35 +605,6 @@ main {
   color: var(--text);
 }
 
-.form-group {
-  margin-bottom: 14px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group select {
-  width: 100%;
-  background-color: var(--bg);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 8px 11px;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-family: inherit;
-  outline: none;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-  border-color: var(--accent);
-}
-
 .modal-footer {
   display: flex;
   justify-content: flex-end;
@@ -672,11 +651,16 @@ footer {
   color: var(--text-muted);
 }
 
+.footer-disclaimer {
+  max-width: 820px;
+  margin: 0 auto 8px;
+  line-height: 1.45;
+}
+
 .footer-links {
-  margin-top: 6px;
   display: flex;
   justify-content: center;
-  gap: 14px;
+  gap: 16px;
 }
 </style>
 </head>
@@ -684,12 +668,9 @@ footer {
 
 <header>
   <div class="nav-container">
-    <div class="left-nav">
-      <a class="btn btn-discord" href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord</a>
-      <a href="#about" class="brand" data-page="About">
-        <span class="brand-title">Kinoku</span>
-      </a>
-    </div>
+    <a href="#about" class="brand" data-page="About">
+      <span class="brand-title">Kinoku</span>
+    </a>
 
     <nav class="center-nav">
       <a href="#movies-tv" class="nav-link" data-page="Movies/TV">Movies/TV</a>
@@ -701,23 +682,21 @@ footer {
     </nav>
 
     <div class="nav-actions">
-      <button class="btn btn-primary" id="submitSiteBtn" type="button">Submit Site</button>
+      <a href="#submit" class="btn btn-primary" data-page="Submit">Submit Site</a>
       <button class="btn btn-donate" id="openDonateBtn" type="button">&#9829; Donate</button>
+      <a class="btn btn-discord" href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord</a>
     </div>
   </div>
 </header>
 
 <main>
   <div id="aboutView">
-    <section class="intro-panel">
+    <section class="panel">
       <div class="intro-about">
         <h1>About Kinoku</h1>
         <p>
           Kinoku is a curated web index of websites for watching and tracking Movies, TV Shows, and Anime. When visiting external websites listed on Kinoku, always use an ad-blocker or a privacy browser with built-in ad-blocking:
         </p>
-        <div class="disclaimer-notice">
-          <strong>Disclaimer:</strong> Kinoku is strictly a web directory and link index. We do not stream, upload, store, or host any movies, TV shows, anime, or video files on our servers.
-        </div>
         <div class="browser-bar">
           <a class="browser-pill" href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin (Ad-Blocker)</a>
           <a class="browser-pill" href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave Browser</a>
@@ -760,22 +739,82 @@ footer {
         </div>
       </div>
     </section>
+  </div>
 
-    <section class="policy-panel" id="policyTermsSection">
-      <h2>Policy &amp; Terms</h2>
-      <div class="policy-grid">
-        <div class="policy-box">
-          <h3>No Hosting or Streaming</h3>
-          <p>
-            Kinoku does not host, stream, distribute, or store any video files, media streams, or copyrighted content. All links point to third-party external websites that operate independently of Kinoku.
-          </p>
+  <div id="submitView" style="display: none;">
+    <section class="panel page-card">
+      <h1>Submit a Website</h1>
+      <p class="sub">Add a site to the Kinoku index by entering its name, URL, category, and ad-score.</p>
+      <form id="submitSiteForm">
+        <div class="form-group">
+          <label for="siteName">Site Name</label>
+          <input type="text" id="siteName" required placeholder="e.g., AniList">
         </div>
-        <div class="policy-box">
-          <h3>Terms of Use &amp; Privacy</h3>
-          <p>
-            By using Kinoku, you acknowledge that you are solely responsible for how you interact with external third-party links and for complying with your local laws. Kinoku does not require accounts, track personal viewing history, or sell user data.
-          </p>
+        <div class="form-group">
+          <label for="siteUrl">URL</label>
+          <input type="url" id="siteUrl" required placeholder="https://anilist.co">
         </div>
+        <div class="form-group">
+          <label for="siteCategory">Category</label>
+          <select id="siteCategory" required>
+            <option value="Movies/TV">Movies/TV</option>
+            <option value="Anime">Anime</option>
+            <option value="Hentai">Hentai</option>
+            <option value="Index">Index</option>
+            <option value="Torrets">Torrets</option>
+            <option value="Forums">Forums</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="siteAdScore">Ad-Score</label>
+          <select id="siteAdScore" required>
+            <option value="Green">Green — No pop ads detected</option>
+            <option value="Yellow">Yellow — Mostly blocked / may have captcha</option>
+            <option value="Red">Red — Pop ads may redirect / intrusive</option>
+          </select>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px;">
+          <a href="#about" class="btn">Cancel</a>
+          <button type="submit" class="btn btn-primary">Add to Index</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div id="policyView" style="display: none;">
+    <section class="panel page-card">
+      <h1>Privacy Policy</h1>
+      <p class="sub">How Kinoku handles user data and third-party websites.</p>
+      <div class="policy-section">
+        <h2>Zero Data Collection</h2>
+        <p>
+          Kinoku does not require user registration, accounts, or personal information. Any sites you add locally are saved strictly in your own browser storage and are never transmitted to any server.
+        </p>
+      </div>
+      <div class="policy-section">
+        <h2>External Links &amp; Third-Party Sites</h2>
+        <p>
+          Kinoku links to external third-party websites that have their own independent privacy policies, tracking scripts, and advertisements. We strongly recommend using an ad-blocker or privacy browser when visiting any external link.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <div id="termsView" style="display: none;">
+    <section class="panel page-card">
+      <h1>Terms of Service</h1>
+      <p class="sub">Rules and legal disclaimers for using the Kinoku directory.</p>
+      <div class="policy-section">
+        <h2>No Hosting or Streaming Disclaimer</h2>
+        <p>
+          Kinoku operates strictly as a search index and link directory. Kinoku does not host, upload, store, stream, or distribute any movies, television shows, anime, or video files on its servers. All media is hosted by independent third-party platforms outside of our control.
+        </p>
+      </div>
+      <div class="policy-section">
+        <h2>User Responsibility &amp; Copyright</h2>
+        <p>
+          By accessing Kinoku, you agree that you are solely responsible for your use of external links and for complying with all applicable laws in your jurisdiction. For copyright or content removal requests, please contact the respective third-party hosting website directly.
+        </p>
       </div>
     </section>
   </div>
@@ -796,54 +835,15 @@ footer {
 </main>
 
 <footer>
-  <div>Kinoku Web Index &mdash; We do not stream or host any movies, anime, or videos.</div>
+  <div class="footer-disclaimer">
+    Disclaimer: Kinoku is strictly a web index and does not host, upload, stream, or store any movies, TV shows, anime, or video files on our servers. All links lead to external third-party sites.
+  </div>
   <div class="footer-links">
     <a href="#about">About</a>
-    <a href="#policy">Policy &amp; Terms</a>
+    <a href="#privacy-policy">Privacy Policy</a>
+    <a href="#terms">Terms of Service</a>
   </div>
 </footer>
-
-<div class="modal-backdrop" id="submitModal">
-  <div class="modal">
-    <div class="modal-header">
-      <h2>Submit a Site</h2>
-      <button class="close-btn" data-close="submitModal">&times;</button>
-    </div>
-    <form id="submitSiteForm">
-      <div class="form-group">
-        <label for="siteName">Site Name</label>
-        <input type="text" id="siteName" required placeholder="e.g., AniList">
-      </div>
-      <div class="form-group">
-        <label for="siteUrl">URL</label>
-        <input type="url" id="siteUrl" required placeholder="https://anilist.co">
-      </div>
-      <div class="form-group">
-        <label for="siteCategory">Category</label>
-        <select id="siteCategory" required>
-          <option value="Movies/TV">Movies/TV</option>
-          <option value="Anime">Anime</option>
-          <option value="Hentai">Hentai</option>
-          <option value="Index">Index</option>
-          <option value="Torrets">Torrets</option>
-          <option value="Forums">Forums</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="siteAdScore">Ad-Score</label>
-        <select id="siteAdScore" required>
-          <option value="Green">Green — No pop ads detected</option>
-          <option value="Yellow">Yellow — Mostly blocked / may have captcha</option>
-          <option value="Red">Red — Pop ads may redirect / intrusive</option>
-        </select>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn" data-close="submitModal">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit Site</button>
-      </div>
-    </form>
-  </div>
-</div>
 
 <div class="modal-backdrop" id="donateModal">
   <div class="modal">
@@ -871,7 +871,7 @@ footer {
 </div>
 
 <script>
-const STORAGE_KEY = 'kinoku_web_index_v4';
+const STORAGE_KEY = 'kinoku_web_index_v5';
 
 const DEFAULT_SITES = [
   { id: '1', name: 'TMDB', url: 'https://www.themoviedb.org', category: 'Movies/TV', adScore: 'Green' },
@@ -884,7 +884,9 @@ const DEFAULT_SITES = [
 
 const HASH_TO_PAGE = {
   '#about': 'About',
-  '#policy': 'Policy',
+  '#submit': 'Submit',
+  '#privacy-policy': 'Privacy Policy',
+  '#terms': 'Terms',
   '#movies-tv': 'Movies/TV',
   '#anime': 'Anime',
   '#hentai': 'Hentai',
@@ -895,7 +897,9 @@ const HASH_TO_PAGE = {
 
 const PAGE_TO_HASH = {
   'About': '#about',
-  'Policy': '#policy',
+  'Submit': '#submit',
+  'Privacy Policy': '#privacy-policy',
+  'Terms': '#terms',
   'Movies/TV': '#movies-tv',
   'Anime': '#anime',
   'Hentai': '#hentai',
@@ -906,6 +910,7 @@ const PAGE_TO_HASH = {
 
 let sites = [];
 let activePage = 'About';
+let lastCategory = 'Movies/TV';
 
 function loadSites() {
   const saved = localStorage.getItem(STORAGE_KEY);
@@ -946,25 +951,40 @@ function getBadgeClass(category) {
 
 function setPage(page) {
   activePage = page;
+
   document.querySelectorAll('.nav-link').forEach(link => {
     link.classList.toggle('active', link.dataset.page === page);
   });
 
   const aboutView = document.getElementById('aboutView');
+  const submitView = document.getElementById('submitView');
+  const policyView = document.getElementById('policyView');
+  const termsView = document.getElementById('termsView');
   const categoryView = document.getElementById('categoryView');
 
-  if (page === 'About' || page === 'Policy') {
+  aboutView.style.display = 'none';
+  submitView.style.display = 'none';
+  policyView.style.display = 'none';
+  termsView.style.display = 'none';
+  categoryView.style.display = 'none';
+
+  if (page === 'About') {
     aboutView.style.display = 'block';
-    categoryView.style.display = 'none';
-    if (page === 'Policy') {
-      document.getElementById('policyTermsSection').scrollIntoView({ behavior: 'smooth' });
-    }
+  } else if (page === 'Submit') {
+    document.getElementById('siteCategory').value = lastCategory;
+    submitView.style.display = 'block';
+  } else if (page === 'Privacy Policy') {
+    policyView.style.display = 'block';
+  } else if (page === 'Terms') {
+    termsView.style.display = 'block';
   } else {
-    aboutView.style.display = 'none';
+    lastCategory = page;
     categoryView.style.display = 'block';
     document.getElementById('pageHeading').textContent = page;
     renderGrid();
   }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function syncFromHash() {
@@ -1013,24 +1033,16 @@ function renderGrid() {
   }).join('');
 }
 
-function openModal(modalId) {
-  if (modalId === 'submitModal' && activePage !== 'About' && activePage !== 'Policy') {
-    document.getElementById('siteCategory').value = activePage;
-  }
-  document.getElementById(modalId).classList.add('open');
-}
-
-function closeModal(modalId) {
-  document.getElementById(modalId).classList.remove('open');
-}
-
 window.addEventListener('hashchange', syncFromHash);
 
-document.getElementById('submitSiteBtn').addEventListener('click', () => openModal('submitModal'));
-document.getElementById('openDonateBtn').addEventListener('click', () => openModal('donateModal'));
+document.getElementById('openDonateBtn').addEventListener('click', () => {
+  document.getElementById('donateModal').classList.add('open');
+});
 
 document.querySelectorAll('[data-close]').forEach(btn => {
-  btn.addEventListener('click', () => closeModal(btn.dataset.close));
+  btn.addEventListener('click', () => {
+    document.getElementById(btn.dataset.close).classList.remove('open');
+  });
 });
 
 document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
@@ -1058,12 +1070,7 @@ document.getElementById('submitSiteForm').addEventListener('submit', e => {
 
   saveSites();
   e.target.reset();
-  closeModal('submitModal');
-
   window.location.hash = PAGE_TO_HASH[category] || '#about';
-  if (activePage === category) {
-    renderGrid();
-  }
 });
 
 document.getElementById('siteGrid').addEventListener('click', e => {
