@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submit &amp; Report — Kinoku</title>
+<style>
+:root {
+  --bg: #0e1014;
+  --surface: #151820;
+  --surface-alt: #1b1f29;
+  --border: #262b36;
+  --text: #e6e8ec;
+  --text-muted: #969dab;
+  --accent: #4c8bf5;
+  --accent-hover: #3b7ae4;
+  --donate: #e05d44;
+  --donate-hover: #c94e36;
+  --discord: #5865F2;
+  --discord-hover: #4752c4;
+  --success-bg: #162b22;
+  --success-border: #285943;
+  --success-text: #81c995;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  justify-self: start;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.center-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 6px 11px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background-color: var(--surface-alt);
+  text-decoration: none;
+}
+
+.nav-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-actions .btn {
+  min-width: 102px;
+}
+
+@media (max-width: 960px) {
+  .nav-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .center-nav {
+    grid-column: 1 / -1;
+    order: 3;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+  }
+}
+
+.btn {
+  background-color: var(--surface-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  height: 34px;
+  padding: 0 13px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  background-color: #232836;
+  border-color: #3a4150;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-donate {
+  background-color: var(--donate);
+  border-color: var(--donate);
+  color: #ffffff;
+}
+
+.btn-donate:hover {
+  background-color: var(--donate-hover);
+  border-color: var(--donate-hover);
+}
+
+.btn-discord {
+  background-color: var(--discord);
+  border-color: var(--discord);
+  color: #ffffff;
+}
+
+.btn-discord:hover {
+  background-color: var(--discord-hover);
+  border-color: var(--discord-hover);
+}
+
+main {
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 20px 52px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.submit-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 820px) {
+  .submit-layout {
+    grid-template-columns: 1.45fr 1fr;
+    align-items: start;
+  }
+}
+
+.panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px 26px;
+}
+
+.panel h1 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.panel h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.panel p.sub {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 18px;
+}
+
+.mode-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  padding: 5px;
+  border-radius: 7px;
+  margin-bottom: 18px;
+}
+
+.mode-tab {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 0.87rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.mode-tab:hover {
+  color: var(--text);
+}
+
+.mode-tab.active {
+  background-color: var(--surface-alt);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 0.91rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 82px;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.form-actions .btn {
+  flex: 1;
+  min-width: 140px;
+  height: 38px;
+}
+
+.status-banner {
+  display: none;
+  margin-top: 16px;
+  padding: 13px 15px;
+  background-color: var(--success-bg);
+  border: 1px solid var(--success-border);
+  border-radius: 6px;
+  color: var(--success-text);
+  font-size: 0.87rem;
+}
+
+.status-banner.open {
+  display: block;
+}
+
+.preview-box {
+  margin-top: 10px;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 10px 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.side-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rule-card {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+
+.rule-card h3 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.rule-card p {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.rule-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.rule-list li {
+  padding-left: 14px;
+  position: relative;
+}
+
+.rule-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 300;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 440px;
+  padding: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: var(--text);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.donate-options {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.donate-card {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.donate-card span {
+  font-size: 0.88rem;
+}
+
+.donate-card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.donate-card a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 18px 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer-disclaimer {
+  max-width: 820px;
+  margin: 0 auto 8px;
+  line-height: 1.45;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-container">
+    <a href="index.html" class="brand">
+      <span class="brand-title">Kinoku</span>
+    </a>
+
+    <nav class="center-nav">
+      <a href="movies-tv.html" class="nav-link">Movies/TV</a>
+      <a href="anime.html" class="nav-link">Anime</a>
+      <a href="hentai.html" class="nav-link">Hentai</a>
+      <a href="index.html" class="nav-link">Index</a>
+      <a href="torrets.html" class="nav-link">Torrets</a>
+      <a href="forums.html" class="nav-link">Forums</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="submit.html" class="btn btn-primary">Submit Site</a>
+      <button class="btn btn-donate" id="openDonateBtn" type="button">&#9829; Donate</button>
+      <a class="btn btn-discord" href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="submit-layout">
+    <section class="panel">
+      <h1>Submit or Report a Site</h1>
+      <p class="sub">
+        All submissions are reviewed manually by Qwideyed before being added, updated, or archived in the Kinoku index.
+      </p>
+
+      <div class="mode-tabs">
+        <button type="button" class="mode-tab active" data-mode="suggest">Suggest a New Site</button>
+        <button type="button" class="mode-tab" data-mode="report">Report a Link / Ad-Score</button>
+      </div>
+
+      <form id="suggestForm">
+        <div class="form-group">
+          <label for="suggestName">Website Name</label>
+          <input type="text" id="suggestName" required placeholder="e.g., AniList">
+        </div>
+        <div class="form-group">
+          <label for="suggestUrl">Website URL</label>
+          <input type="url" id="suggestUrl" required placeholder="https://example.com">
+        </div>
+        <div class="form-group">
+          <label for="suggestCategory">Category</label>
+          <select id="suggestCategory" required>
+            <option value="Movies/TV">Movies/TV</option>
+            <option value="Anime">Anime</option>
+            <option value="Hentai">Hentai</option>
+            <option value="Index">Index</option>
+            <option value="Torrets">Torrets</option>
+            <option value="Forums">Forums</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="suggestAdScore">Observed Ad-Score</label>
+          <select id="suggestAdScore" required>
+            <option value="Green">Green — No pop ads detected</option>
+            <option value="Yellow">Yellow — Mostly blocked / may have captcha</option>
+            <option value="Red">Red — Pop ads may redirect / intrusive</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="suggestNotes">Notes (Optional)</label>
+          <textarea id="suggestNotes" placeholder="e.g., 1080p, no login required, fast episode selector..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Send Suggestion</button>
+          <button type="button" class="btn" id="copySuggestBtn">Copy for Discord</button>
+        </div>
+      </form>
+
+      <form id="reportForm" style="display: none;">
+        <div class="form-group">
+          <label for="reportSite">Site Name or URL on Kinoku</label>
+          <input type="text" id="reportSite" required placeholder="e.g., example.com">
+        </div>
+        <div class="form-group">
+          <label for="reportCategory">Current Category</label>
+          <select id="reportCategory" required>
+            <option value="Movies/TV">Movies/TV</option>
+            <option value="Anime">Anime</option>
+            <option value="Hentai">Hentai</option>
+            <option value="Index">Index</option>
+            <option value="Torrets">Torrets</option>
+            <option value="Forums">Forums</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="reportReason">Issue Type</label>
+          <select id="reportReason" required>
+            <option value="Dead / Offline Link">Dead / Offline Link (Archive)</option>
+            <option value="Domain Changed">Domain / URL Changed</option>
+            <option value="Ad-Score Worsened">Ad-Score Worsened (Intrusive Pop Ads / Redirects)</option>
+            <option value="Paywall / Account Required">Now Requires Account or Payment</option>
+            <option value="Wrong Category">Listed in Wrong Category</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="reportDetails">Details / New Domain (Optional)</label>
+          <textarea id="reportDetails" placeholder="Include new URL if the domain moved, or describe the ad/playback issue..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Submit Report</button>
+          <button type="button" class="btn" id="copyReportBtn">Copy for Discord</button>
+        </div>
+      </form>
+
+      <div class="status-banner" id="statusBanner">
+        <div id="statusText">Submission formatted and ready!</div>
+        <div class="preview-box" id="submissionPreview"></div>
+      </div>
+    </section>
+
+    <aside class="side-rules">
+      <div class="panel">
+        <h2>Submission Guidelines</h2>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="rule-card">
+            <h3>What Gets Approved</h3>
+            <ul class="rule-list">
+              <li>100% free access without mandatory sign-ups</li>
+              <li>Clean 720p/1080p playback or reliable index</li>
+              <li>Works properly with uBlock Origin or Brave</li>
+              <li>Hosted on a proper domain (no free subdomains)</li>
+            </ul>
+          </div>
+
+          <div class="rule-card">
+            <h3>What Gets Rejected</h3>
+            <ul class="rule-list">
+              <li>Sites requiring paid subscriptions or forced accounts</li>
+              <li>Malware, fake download buttons, or scam redirects</li>
+              <li>Clone sites with broken players or dead catalogs</li>
+            </ul>
+          </div>
+
+          <div class="rule-card">
+            <h3>Privacy Reminder</h3>
+            <p>
+              Do not include personal details, emails, or account credentials in your submission. You can also drop suggestions directly in our <a href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord</a> server.
+            </p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-disclaimer">
+    Disclaimer: Kinoku is strictly a web index and does not host, upload, stream, or store any movies, TV shows, anime, or video files on our servers. All links lead to external third-party sites.
+  </div>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="donateModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Support Kinoku</h2>
+      <button class="close-btn" data-close="donateModal">&times;</button>
+    </div>
+    <p style="font-size: 0.9rem; color: var(--text-muted);">
+      Kinoku is an independent web index. Donations help keep the site maintained and online.
+    </p>
+    <div class="donate-options">
+      <div class="donate-card">
+        <span><strong>Ko-fi</strong> &mdash; One-time tip</span>
+        <a href="https://ko-fi.com" target="_blank" rel="noopener noreferrer">Donate &rarr;</a>
+      </div>
+      <div class="donate-card">
+        <span><strong>PayPal</strong> &mdash; Direct contribution</span>
+        <a href="https://paypal.com" target="_blank" rel="noopener noreferrer">Contribute &rarr;</a>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" data-close="donateModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DISCORD_WEBHOOK_URL = '';
+
+const modeTabs = document.querySelectorAll('.mode-tab');
+const suggestForm = document.getElementById('suggestForm');
+const reportForm = document.getElementById('reportForm');
+const statusBanner = document.getElementById('statusBanner');
+const statusText = document.getElementById('statusText');
+const submissionPreview = document.getElementById('submissionPreview');
+
+modeTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    modeTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    statusBanner.classList.remove('open');
+
+    if (tab.dataset.mode === 'suggest') {
+      suggestForm.style.display = 'block';
+      reportForm.style.display = 'none';
+    } else {
+      suggestForm.style.display = 'none';
+      reportForm.style.display = 'block';
+    }
+  });
+});
+
+function buildSuggestPayload() {
+  const name = document.getElementById('suggestName').value.trim();
+  const url = document.getElementById('suggestUrl').value.trim();
+  const category = document.getElementById('suggestCategory').value;
+  const adScore = document.getElementById('suggestAdScore').value;
+  const notes = document.getElementById('suggestNotes').value.trim() || 'None';
+
+  return `[Kinoku Site Suggestion]\nName: ${name}\nURL: ${url}\nCategory: ${category}\nAd-Score: ${adScore}\nNotes: ${notes}`;
+}
+
+function buildReportPayload() {
+  const site = document.getElementById('reportSite').value.trim();
+  const category = document.getElementById('reportCategory').value;
+  const reason = document.getElementById('reportReason').value;
+  const details = document.getElementById('reportDetails').value.trim() || 'None';
+
+  return `[Kinoku Link Report]\nSite: ${site}\nCategory: ${category}\nIssue: ${reason}\nDetails: ${details}`;
+}
+
+async function handleSubmission(payloadText, formEl, successLabel) {
+  submissionPreview.textContent = payloadText;
+  statusBanner.classList.add('open');
+
+  if (DISCORD_WEBHOOK_URL) {
+    try {
+      const res = await fetch(DISCORD_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: payloadText })
+      });
+      if (res.ok) {
+        statusText.textContent = successLabel + ' Sent directly to Qwideyed for review.';
+        formEl.reset();
+        return;
+      }
+    } catch (err) {}
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(payloadText);
+      statusText.textContent = successLabel + ' Copied to your clipboard—paste it in the Kinoku Discord for review:';
+      formEl.reset();
+      return;
+    } catch (err) {}
+  }
+
+  statusText.textContent = successLabel + ' Copy the formatted text below and send it on Discord:';
+  formEl.reset();
+}
+
+suggestForm.addEventListener('submit', e => {
+  e.preventDefault();
+  handleSubmission(buildSuggestPayload(), suggestForm, 'Site suggestion ready!');
+});
+
+reportForm.addEventListener('submit', e => {
+  e.preventDefault();
+  handleSubmission(buildReportPayload(), reportForm, 'Link report ready!');
+});
+
+document.getElementById('copySuggestBtn').addEventListener('click', () => {
+  if (!suggestForm.reportValidity()) return;
+  handleSubmission(buildSuggestPayload(), suggestForm, 'Suggestion copied!');
+});
+
+document.getElementById('copyReportBtn').addEventListener('click', () => {
+  if (!reportForm.reportValidity()) return;
+  handleSubmission(buildReportPayload(), reportForm, 'Report copied!');
+});
+
+document.getElementById('openDonateBtn').addEventListener('click', () => {
+  document.getElementById('donateModal').classList.add('open');
+});
+
+document.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById(btn.dataset.close).classList.remove('open');
+  });
+});
+
+document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+  backdrop.addEventListener('click', e => {
+    if (e.target === backdrop) backdrop.classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
