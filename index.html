@@ -137,6 +137,10 @@ header {
   gap: 8px;
 }
 
+.nav-actions .btn {
+  min-width: 102px;
+}
+
 @media (max-width: 960px) {
   .nav-container {
     grid-template-columns: 1fr 1fr;
@@ -153,13 +157,18 @@ header {
   background-color: var(--surface-alt);
   color: var(--text);
   border: 1px solid var(--border);
-  padding: 7px 12px;
+  height: 34px;
+  padding: 0 13px;
   border-radius: 6px;
+  font-family: inherit;
   font-size: 0.85rem;
   font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   text-decoration: none;
   transition: background-color 0.15s, border-color 0.15s;
