@@ -16,16 +16,20 @@
   --accent-hover: #3b7ae4;
   --donate: #e05d44;
   --donate-hover: #c94e36;
-  --tag-anime: #243757;
-  --tag-anime-text: #8ab4f8;
+  --discord: #5865F2;
+  --discord-hover: #4752c4;
   --tag-movietv: #392948;
   --tag-movietv-text: #c58af9;
+  --tag-anime: #243757;
+  --tag-anime-text: #8ab4f8;
   --tag-hentai: #472438;
   --tag-hentai-text: #f48fb1;
   --tag-index: #1e3b35;
   --tag-index-text: #78d9ec;
   --tag-torrets: #3a3022;
   --tag-torrets-text: #f6ad55;
+  --tag-forums: #2b3828;
+  --tag-forums-text: #9ae6b4;
   --score-green: #1e3a2f;
   --score-green-text: #81c995;
   --score-yellow: #3d331e;
@@ -68,7 +72,7 @@ header {
 }
 
 .nav-container {
-  max-width: 1100px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 10px 20px;
   min-height: 58px;
@@ -78,10 +82,16 @@ header {
   gap: 12px;
 }
 
+.left-nav {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .brand {
   text-decoration: none;
   color: var(--text);
-  justify-self: start;
 }
 
 .brand:hover {
@@ -107,7 +117,7 @@ header {
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
-  padding: 6px 12px;
+  padding: 6px 11px;
   border-radius: 6px;
   border: 1px solid transparent;
   transition: color 0.15s, background-color 0.15s, border-color 0.15s;
@@ -130,10 +140,10 @@ header {
   justify-self: end;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
-@media (max-width: 740px) {
+@media (max-width: 920px) {
   .nav-container {
     grid-template-columns: 1fr 1fr;
   }
@@ -149,20 +159,22 @@ header {
   background-color: var(--surface-alt);
   color: var(--text);
   border: 1px solid var(--border);
-  padding: 7px 13px;
+  padding: 7px 12px;
   border-radius: 6px;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  text-decoration: none;
   transition: background-color 0.15s, border-color 0.15s;
 }
 
 .btn:hover {
   background-color: #232836;
   border-color: #3a4150;
+  text-decoration: none;
 }
 
 .btn-primary {
@@ -185,6 +197,17 @@ header {
 .btn-donate:hover {
   background-color: var(--donate-hover);
   border-color: var(--donate-hover);
+}
+
+.btn-discord {
+  background-color: var(--discord);
+  border-color: var(--discord);
+  color: #ffffff;
+}
+
+.btn-discord:hover {
+  background-color: var(--discord-hover);
+  border-color: var(--discord-hover);
 }
 
 main {
@@ -217,6 +240,16 @@ main {
 .intro-about p {
   color: var(--text-muted);
   font-size: 0.92rem;
+}
+
+.disclaimer-notice {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background-color: var(--bg);
+  border-left: 3px solid var(--donate);
+  border-radius: 4px;
+  font-size: 0.86rem;
+  color: var(--text);
 }
 
 .browser-bar {
@@ -299,6 +332,50 @@ main {
 .dot-green { background-color: #81c995; }
 .dot-yellow { background-color: #fdd663; }
 .dot-red { background-color: #f28b82; }
+
+.policy-panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 24px;
+}
+
+.policy-panel h2 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 780px) {
+  .policy-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.policy-box {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+
+.policy-box h3 {
+  font-size: 0.94rem;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.policy-box p {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
 
 .page-header-bar {
   display: flex;
@@ -400,14 +477,14 @@ main {
   white-space: nowrap;
 }
 
-.badge-Anime {
-  background-color: var(--tag-anime);
-  color: var(--tag-anime-text);
-}
-
 .badge-MovieTV {
   background-color: var(--tag-movietv);
   color: var(--tag-movietv-text);
+}
+
+.badge-Anime {
+  background-color: var(--tag-anime);
+  color: var(--tag-anime-text);
 }
 
 .badge-Hentai {
@@ -423,6 +500,11 @@ main {
 .badge-Torrets {
   background-color: var(--tag-torrets);
   color: var(--tag-torrets-text);
+}
+
+.badge-Forums {
+  background-color: var(--tag-forums);
+  color: var(--tag-forums-text);
 }
 
 .score-Green {
@@ -589,104 +671,145 @@ footer {
   font-size: 0.8rem;
   color: var(--text-muted);
 }
+
+.footer-links {
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
 </style>
 </head>
 <body>
 
 <header>
   <div class="nav-container">
-    <a href="#all" class="brand" data-page="All">
-      <span class="brand-title">Kinoku</span>
-    </a>
+    <div class="left-nav">
+      <a class="btn btn-discord" href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord</a>
+      <a href="#about" class="brand" data-page="About">
+        <span class="brand-title">Kinoku</span>
+      </a>
+    </div>
 
     <nav class="center-nav">
+      <a href="#movies-tv" class="nav-link" data-page="Movies/TV">Movies/TV</a>
       <a href="#anime" class="nav-link" data-page="Anime">Anime</a>
-      <a href="#movie-tv" class="nav-link" data-page="Movie/TV">Movie/TV</a>
       <a href="#hentai" class="nav-link" data-page="Hentai">Hentai</a>
       <a href="#index" class="nav-link" data-page="Index">Index</a>
       <a href="#torrets" class="nav-link" data-page="Torrets">Torrets</a>
+      <a href="#forums" class="nav-link" data-page="Forums">Forums</a>
     </nav>
 
     <div class="nav-actions">
+      <button class="btn btn-primary" id="submitSiteBtn" type="button">Submit Site</button>
       <button class="btn btn-donate" id="openDonateBtn" type="button">&#9829; Donate</button>
     </div>
   </div>
 </header>
 
 <main>
-  <section class="intro-panel">
-    <div class="intro-about">
-      <h1>About Kinoku</h1>
-      <p>
-        Kinoku is a curated web index of websites for watching and tracking Anime, Movies, and TV Shows. When visiting external websites listed below, always use an ad-blocker or a privacy browser with built-in ad-blocking:
-      </p>
-      <div class="browser-bar">
-        <a class="browser-pill" href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin (Ad-Blocker)</a>
-        <a class="browser-pill" href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave Browser</a>
-        <a class="browser-pill" href="https://www.firefox.com/" target="_blank" rel="noopener noreferrer">Firefox</a>
-        <a class="browser-pill" href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">DuckDuckGo Browser</a>
-      </div>
-    </div>
-
-    <div class="guidelines-grid">
-      <div class="guide-box">
-        <h2>Minimum requirements for best free streaming:</h2>
-        <ul class="guide-list">
-          <li>100% Free</li>
-          <li>1080p or 720p</li>
-          <li>NO account required</li>
-          <li>NO geoblocking</li>
-          <li>Mobile friendly</li>
-          <li>Works with ad-blocker</li>
-          <li>English website</li>
-          <li>Easy to start watching</li>
-          <li>Easy to find S02E03</li>
-          <li>New movies/tv shows</li>
-          <li>Old movies/tv shows</li>
-          <li>Not hosted on free subdomain</li>
-          <li>I would personally use it daily</li>
-        </ul>
+  <div id="aboutView">
+    <section class="intro-panel">
+      <div class="intro-about">
+        <h1>About Kinoku</h1>
+        <p>
+          Kinoku is a curated web index of websites for watching and tracking Movies, TV Shows, and Anime. When visiting external websites listed on Kinoku, always use an ad-blocker or a privacy browser with built-in ad-blocking:
+        </p>
+        <div class="disclaimer-notice">
+          <strong>Disclaimer:</strong> Kinoku is strictly a web directory and link index. We do not stream, upload, store, or host any movies, TV shows, anime, or video files on our servers.
+        </div>
+        <div class="browser-bar">
+          <a class="browser-pill" href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin (Ad-Blocker)</a>
+          <a class="browser-pill" href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave Browser</a>
+          <a class="browser-pill" href="https://www.firefox.com/" target="_blank" rel="noopener noreferrer">Firefox</a>
+          <a class="browser-pill" href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">DuckDuckGo Browser</a>
+          <a class="browser-pill" href="https://browsehere.net/en/" target="_blank" rel="noopener noreferrer">BrowseHere (Android/Google TV)</a>
+        </div>
       </div>
 
-      <div class="guide-box">
-        <h2>Ad-score explained:</h2>
-        <ul class="guide-list">
-          <li><span class="score-dot dot-green"></span>Pop ads are not detected.</li>
-          <li><span class="score-dot dot-yellow"></span>Pop ads are mostly blocked. May have captcha. Ad-blocker may interfere.</li>
-          <li><span class="score-dot dot-red"></span>Pop ads may redirect from current page. Ad-blocker may interfere. Intrusive ads.</li>
-          <li>Test is done with Adblock Plus and <a href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin</a> on desktop, and <a href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">DuckDuckGo</a> browser on mobile.</li>
-          <li>For more comprehensive ad-blocking, use <a href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave</a> browser on mobile. Also recommended: BrowseHere for Google/Android TV.</li>
-          <li>How ads are implemented may change over time so always use an ad-blocker (or <a href="https://www.firefox.com/" target="_blank" rel="noopener noreferrer">Firefox</a> + uBlock Origin) when visiting these websites.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+      <div class="guidelines-grid">
+        <div class="guide-box">
+          <h2>Minimum requirements for best free streaming:</h2>
+          <ul class="guide-list">
+            <li>100% Free</li>
+            <li>1080p or 720p</li>
+            <li>NO account required</li>
+            <li>NO geoblocking</li>
+            <li>Mobile friendly</li>
+            <li>Works with ad-blocker</li>
+            <li>English website</li>
+            <li>Easy to start watching</li>
+            <li>Easy to find S02E03</li>
+            <li>New movies/tv shows</li>
+            <li>Old movies/tv shows</li>
+            <li>Not hosted on free subdomain</li>
+            <li>I would personally use it daily</li>
+          </ul>
+        </div>
 
-  <div class="page-header-bar">
-    <div class="page-title-wrap">
-      <h2 id="pageHeading">All Websites</h2>
-      <span class="entry-count" id="entryCount">0 sites</span>
-    </div>
-    <button class="btn btn-primary" id="quickAddBtn" type="button">+ Add Website</button>
+        <div class="guide-box">
+          <h2>Ad-score explained:</h2>
+          <ul class="guide-list">
+            <li><span class="score-dot dot-green"></span>Pop ads are not detected.</li>
+            <li><span class="score-dot dot-yellow"></span>Pop ads are mostly blocked. May have captcha. Ad-blocker may interfere.</li>
+            <li><span class="score-dot dot-red"></span>Pop ads may redirect from current page. Ad-blocker may interfere. Intrusive ads.</li>
+            <li>Test is done with Adblock Plus and <a href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin</a> on desktop, and <a href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">DuckDuckGo</a> browser on mobile.</li>
+            <li>For more comprehensive ad-blocking, use <a href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave</a> browser on mobile. I also recommend <a href="https://browsehere.net/en/" target="_blank" rel="noopener noreferrer">BrowseHere</a> for Google/Android TV.</li>
+            <li>How ads are implemented may change over time so always use an ad-blocker (or <a href="https://www.firefox.com/" target="_blank" rel="noopener noreferrer">Firefox</a> + uBlock Origin) when visiting these websites.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="policy-panel" id="policyTermsSection">
+      <h2>Policy &amp; Terms</h2>
+      <div class="policy-grid">
+        <div class="policy-box">
+          <h3>No Hosting or Streaming</h3>
+          <p>
+            Kinoku does not host, stream, distribute, or store any video files, media streams, or copyrighted content. All links point to third-party external websites that operate independently of Kinoku.
+          </p>
+        </div>
+        <div class="policy-box">
+          <h3>Terms of Use &amp; Privacy</h3>
+          <p>
+            By using Kinoku, you acknowledge that you are solely responsible for how you interact with external third-party links and for complying with your local laws. Kinoku does not require accounts, track personal viewing history, or sell user data.
+          </p>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div class="site-grid" id="siteGrid"></div>
-  <div class="empty-state" id="emptyState" style="display: none;">
-    No websites added to this category yet.
+  <div id="categoryView" style="display: none;">
+    <div class="page-header-bar">
+      <div class="page-title-wrap">
+        <h2 id="pageHeading">Movies/TV</h2>
+        <span class="entry-count" id="entryCount">0 sites</span>
+      </div>
+    </div>
+
+    <div class="site-grid" id="siteGrid"></div>
+    <div class="empty-state" id="emptyState" style="display: none;">
+      No websites added to this category yet.
+    </div>
   </div>
 </main>
 
 <footer>
-  Kinoku Web Index &mdash; Use uBlock Origin, Brave, Firefox, or DuckDuckGo when browsing external links.
+  <div>Kinoku Web Index &mdash; We do not stream or host any movies, anime, or videos.</div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#policy">Policy &amp; Terms</a>
+  </div>
 </footer>
 
-<div class="modal-backdrop" id="addModal">
+<div class="modal-backdrop" id="submitModal">
   <div class="modal">
     <div class="modal-header">
-      <h2>Add Website to Kinoku</h2>
-      <button class="close-btn" data-close="addModal">&times;</button>
+      <h2>Submit a Site</h2>
+      <button class="close-btn" data-close="submitModal">&times;</button>
     </div>
-    <form id="addSiteForm">
+    <form id="submitSiteForm">
       <div class="form-group">
         <label for="siteName">Site Name</label>
         <input type="text" id="siteName" required placeholder="e.g., AniList">
@@ -698,11 +821,12 @@ footer {
       <div class="form-group">
         <label for="siteCategory">Category</label>
         <select id="siteCategory" required>
+          <option value="Movies/TV">Movies/TV</option>
           <option value="Anime">Anime</option>
-          <option value="Movie/TV">Movie/TV</option>
           <option value="Hentai">Hentai</option>
           <option value="Index">Index</option>
           <option value="Torrets">Torrets</option>
+          <option value="Forums">Forums</option>
         </select>
       </div>
       <div class="form-group">
@@ -714,8 +838,8 @@ footer {
         </select>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn" data-close="addModal">Cancel</button>
-        <button type="submit" class="btn btn-primary">Add to Index</button>
+        <button type="button" class="btn" data-close="submitModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit Site</button>
       </div>
     </form>
   </div>
@@ -747,28 +871,41 @@ footer {
 </div>
 
 <script>
-const STORAGE_KEY = 'kinoku_web_index_v3';
+const STORAGE_KEY = 'kinoku_web_index_v4';
 
 const DEFAULT_SITES = [
-  { id: '1', name: 'AniList', url: 'https://anilist.co', category: 'Anime', adScore: 'Green' },
-  { id: '2', name: 'MyAnimeList', url: 'https://myanimelist.net', category: 'Anime', adScore: 'Green' },
-  { id: '3', name: 'TMDB', url: 'https://www.themoviedb.org', category: 'Movie/TV', adScore: 'Green' },
-  { id: '4', name: 'Letterboxd', url: 'https://letterboxd.com', category: 'Movie/TV', adScore: 'Green' },
+  { id: '1', name: 'TMDB', url: 'https://www.themoviedb.org', category: 'Movies/TV', adScore: 'Green' },
+  { id: '2', name: 'Letterboxd', url: 'https://letterboxd.com', category: 'Movies/TV', adScore: 'Green' },
+  { id: '3', name: 'AniList', url: 'https://anilist.co', category: 'Anime', adScore: 'Green' },
+  { id: '4', name: 'MyAnimeList', url: 'https://myanimelist.net', category: 'Anime', adScore: 'Green' },
   { id: '5', name: 'JustWatch', url: 'https://www.justwatch.com', category: 'Index', adScore: 'Green' },
   { id: '6', name: 'Nyaa', url: 'https://nyaa.si', category: 'Torrets', adScore: 'Green' }
 ];
 
 const HASH_TO_PAGE = {
-  '#all': 'All',
+  '#about': 'About',
+  '#policy': 'Policy',
+  '#movies-tv': 'Movies/TV',
   '#anime': 'Anime',
-  '#movie-tv': 'Movie/TV',
   '#hentai': 'Hentai',
   '#index': 'Index',
-  '#torrets': 'Torrets'
+  '#torrets': 'Torrets',
+  '#forums': 'Forums'
+};
+
+const PAGE_TO_HASH = {
+  'About': '#about',
+  'Policy': '#policy',
+  'Movies/TV': '#movies-tv',
+  'Anime': '#anime',
+  'Hentai': '#hentai',
+  'Index': '#index',
+  'Torrets': '#torrets',
+  'Forums': '#forums'
 };
 
 let sites = [];
-let activePage = 'All';
+let activePage = 'About';
 
 function loadSites() {
   const saved = localStorage.getItem(STORAGE_KEY);
@@ -803,7 +940,7 @@ function escapeHtml(str) {
 }
 
 function getBadgeClass(category) {
-  if (category === 'Movie/TV') return 'badge-MovieTV';
+  if (category === 'Movies/TV') return 'badge-MovieTV';
   return 'badge-' + category;
 }
 
@@ -812,13 +949,27 @@ function setPage(page) {
   document.querySelectorAll('.nav-link').forEach(link => {
     link.classList.toggle('active', link.dataset.page === page);
   });
-  document.getElementById('pageHeading').textContent = page === 'All' ? 'All Websites' : page;
-  renderGrid();
+
+  const aboutView = document.getElementById('aboutView');
+  const categoryView = document.getElementById('categoryView');
+
+  if (page === 'About' || page === 'Policy') {
+    aboutView.style.display = 'block';
+    categoryView.style.display = 'none';
+    if (page === 'Policy') {
+      document.getElementById('policyTermsSection').scrollIntoView({ behavior: 'smooth' });
+    }
+  } else {
+    aboutView.style.display = 'none';
+    categoryView.style.display = 'block';
+    document.getElementById('pageHeading').textContent = page;
+    renderGrid();
+  }
 }
 
 function syncFromHash() {
   const hash = window.location.hash.toLowerCase();
-  const matchedPage = HASH_TO_PAGE[hash] || 'All';
+  const matchedPage = HASH_TO_PAGE[hash] || 'About';
   setPage(matchedPage);
 }
 
@@ -827,7 +978,7 @@ function renderGrid() {
   const emptyState = document.getElementById('emptyState');
   const countLabel = document.getElementById('entryCount');
 
-  const filtered = sites.filter(site => activePage === 'All' || site.category === activePage);
+  const filtered = sites.filter(site => site.category === activePage);
 
   countLabel.textContent = `${filtered.length} ${filtered.length === 1 ? 'site' : 'sites'}`;
 
@@ -863,7 +1014,7 @@ function renderGrid() {
 }
 
 function openModal(modalId) {
-  if (modalId === 'addModal' && activePage !== 'All') {
+  if (modalId === 'submitModal' && activePage !== 'About' && activePage !== 'Policy') {
     document.getElementById('siteCategory').value = activePage;
   }
   document.getElementById(modalId).classList.add('open');
@@ -875,7 +1026,7 @@ function closeModal(modalId) {
 
 window.addEventListener('hashchange', syncFromHash);
 
-document.getElementById('quickAddBtn').addEventListener('click', () => openModal('addModal'));
+document.getElementById('submitSiteBtn').addEventListener('click', () => openModal('submitModal'));
 document.getElementById('openDonateBtn').addEventListener('click', () => openModal('donateModal'));
 
 document.querySelectorAll('[data-close]').forEach(btn => {
@@ -888,7 +1039,7 @@ document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
   });
 });
 
-document.getElementById('addSiteForm').addEventListener('submit', e => {
+document.getElementById('submitSiteForm').addEventListener('submit', e => {
   e.preventDefault();
   const name = document.getElementById('siteName').value.trim();
   const url = document.getElementById('siteUrl').value.trim();
@@ -906,9 +1057,13 @@ document.getElementById('addSiteForm').addEventListener('submit', e => {
   });
 
   saveSites();
-  renderGrid();
   e.target.reset();
-  closeModal('addModal');
+  closeModal('submitModal');
+
+  window.location.hash = PAGE_TO_HASH[category] || '#about';
+  if (activePage === category) {
+    renderGrid();
+  }
 });
 
 document.getElementById('siteGrid').addEventListener('click', e => {
