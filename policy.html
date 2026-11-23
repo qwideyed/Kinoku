@@ -1,1 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Kinoku</title>
+<style>
+:root {
+  --bg: #0e1014;
+  --surface: #151820;
+  --surface-alt: #1b1f29;
+  --border: #262b36;
+  --text: #e6e8ec;
+  --text-muted: #969dab;
+  --accent: #4c8bf5;
+  --accent-hover: #3b7ae4;
+  --donate: #e05d44;
+  --donate-hover: #c94e36;
+  --discord: #5865F2;
+  --discord-hover: #4752c4;
+}
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  justify-self: start;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.center-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 6px 11px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background-color: var(--surface-alt);
+  text-decoration: none;
+}
+
+.nav-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-actions .btn {
+  min-width: 102px;
+}
+
+@media (max-width: 960px) {
+  .nav-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .center-nav {
+    grid-column: 1 / -1;
+    order: 3;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+  }
+}
+
+.btn {
+  background-color: var(--surface-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  height: 34px;
+  padding: 0 13px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  background-color: #232836;
+  border-color: #3a4150;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-donate {
+  background-color: var(--donate);
+  border-color: var(--donate);
+  color: #ffffff;
+}
+
+.btn-donate:hover {
+  background-color: var(--donate-hover);
+  border-color: var(--donate-hover);
+}
+
+.btn-discord {
+  background-color: var(--discord);
+  border-color: var(--discord);
+  color: #ffffff;
+}
+
+.btn-discord:hover {
+  background-color: var(--discord-hover);
+  border-color: var(--discord-hover);
+}
+
+main {
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 20px 52px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px 26px;
+}
+
+.panel h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.last-updated {
+  display: inline-block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.panel p.intro {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  margin-bottom: 18px;
+}
+
+.toc-box {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+}
+
+.toc-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 6px 14px;
+  font-size: 0.85rem;
+}
+
+.policy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.policy-section {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 20px;
+  scroll-margin-top: 76px;
+}
+
+.policy-section h2 {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.policy-section h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+.policy-section p {
+  font-size: 0.89rem;
+  color: var(--text-muted);
+  margin-bottom: 9px;
+}
+
+.policy-section p:last-child {
+  margin-bottom: 0;
+}
+
+.policy-section ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  margin-bottom: 8px;
+}
+
+.policy-section ul:last-child {
+  margin-bottom: 0;
+}
+
+.policy-section ul li {
+  padding-left: 14px;
+  position: relative;
+}
+
+.policy-section ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.policy-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.85rem;
+}
+
+.policy-table th,
+.policy-table td {
+  text-align: left;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+}
+
+.policy-table th {
+  background-color: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.policy-table td {
+  color: var(--text-muted);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 300;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 440px;
+  padding: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: var(--text);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.donate-options {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.donate-card {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.donate-card span {
+  font-size: 0.88rem;
+}
+
+.donate-card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.donate-card a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 18px 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer-disclaimer {
+  max-width: 820px;
+  margin: 0 auto 8px;
+  line-height: 1.45;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.footer-links a.active {
+  color: var(--text);
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-container">
+    <a href="index.html" class="brand">
+      <span class="brand-title">Kinoku</span>
+    </a>
+
+    <nav class="center-nav">
+      <a href="movies-tv.html" class="nav-link">Movies/TV</a>
+      <a href="anime.html" class="nav-link">Anime</a>
+      <a href="hentai.html" class="nav-link">Hentai</a>
+      <a href="index.html" class="nav-link">Index</a>
+      <a href="torrets.html" class="nav-link">Torrets</a>
+      <a href="forums.html" class="nav-link">Forums</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="submit.html" class="btn btn-primary">Submit Site</a>
+      <button class="btn btn-donate" id="openDonateBtn" type="button">&#9829; Donate</button>
+      <a class="btn btn-discord" href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="panel">
+    <h1>Privacy Policy</h1>
+    <span class="last-updated">Effective Date: November 23, 2026</span>
+    <p class="intro">
+      Kinoku is engineered around data minimization and user anonymity. We believe browsing a web directory should never require surrendering your identity, email address, or browsing habits. This Privacy Policy details our exact technical practices, what stays on your device, and how external third-party links operate once you leave Kinoku.
+    </p>
+
+    <div class="toc-box">
+      <div class="toc-title">Quick Navigation</div>
+      <div class="toc-grid">
+        <a href="#sec-1">1. Zero Personal Data Collection</a>
+        <a href="#sec-2">2. Data Summary Table</a>
+        <a href="#sec-3">3. Browser Local Storage</a>
+        <a href="#sec-4">4. Cookies, Trackers &amp; Fingerprinting</a>
+        <a href="#sec-5">5. Static Hosting &amp; Network Logs</a>
+        <a href="#sec-6">6. External Third-Party Websites</a>
+        <a href="#sec-7">7. Recommended Privacy Tools</a>
+        <a href="#sec-8">8. Donations &amp; Payment Processors</a>
+        <a href="#sec-9">9. Site Submissions &amp; Discord</a>
+        <a href="#sec-10">10. Age Restrictions &amp; Adult Sections</a>
+        <a href="#sec-11">11. Your Control &amp; Data Deletion</a>
+        <a href="#sec-12">12. Changes to This Policy</a>
+      </div>
+    </div>
+
+    <div class="policy-list">
+      <div class="policy-section" id="sec-1">
+        <h2>1. Zero Personal Data Collection</h2>
+        <p>
+          Kinoku does not operate a user registration system, login portal, or backend user database. We do not ask for, collect, harvest, rent, or sell personally identifiable information (PII). Specifically, Kinoku never collects:
+        </p>
+        <ul>
+          <li>Real names, usernames, or account passwords</li>
+          <li>Email addresses, phone numbers, or physical mailing addresses</li>
+          <li>Watch history, search queries, clickstream logs, or outbound link telemetry</li>
+          <li>Device hardware identifiers, GPS location data, or contact lists</li>
+        </ul>
+      </div>
+
+      <div class="policy-section" id="sec-2">
+        <h2>2. Data Handling Overview</h2>
+        <p>
+          The table below summarizes how different categories of technical and user-generated information are handled on Kinoku:
+        </p>
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>Data Type</th>
+              <th>Collected by Kinoku?</th>
+              <th>Storage Location</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Account / Login Info</td>
+              <td>No</td>
+              <td>None</td>
+              <td>No accounts exist on Kinoku</td>
+            </tr>
+            <tr>
+              <td>Custom Added Sites</td>
+              <td>No (Client-Side Only)</td>
+              <td>Your Browser <code>localStorage</code></td>
+              <td>Saves your personal directory edits locally</td>
+            </tr>
+            <tr>
+              <td>Tracking Cookies</td>
+              <td>No</td>
+              <td>None</td>
+              <td>We do not track users across sessions or sites</td>
+            </tr>
+            <tr>
+              <td>Standard HTTP Metadata</td>
+              <td>Processed by CDN/Host</td>
+              <td>Temporary Infrastructure Logs</td>
+              <td>Delivering static HTML/CSS/JS files &amp; DDoS mitigation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="policy-section" id="sec-3">
+        <h2>3. Browser Local Storage</h2>
+        <p>
+          When you add or remove website entries using the Submit Site page or category cards, Kinoku stores that list inside your browser's built-in <code>localStorage</code> API on your own device.
+        </p>
+        <p>
+          This storage mechanism operates 100% locally inside your web browser. Kinoku has no server endpoint that reads, syncs, or backs up your <code>localStorage</code> data. If you switch browsers, use a private/incognito window, or clear your site data, your custom entries will reset to the default directory list.
+        </p>
+      </div>
+
+      <div class="policy-section" id="sec-4">
+        <h2>4. Cookies, Trackers &amp; Browser Fingerprinting</h2>
+        <p>
+          Kinoku does not set first-party tracking cookies, third-party advertising cookies, social media pixels, or canvas/audio fingerprinting scripts. We do not use Google Analytics, Meta Pixel, or behavioral ad networks anywhere on the site.
+        </p>
+      </div>
+
+      <div class="policy-section" id="sec-5">
+        <h2>5. Static Hosting &amp; Standard Network Logs</h2>
+        <p>
+          Kinoku is served as static web files. When your browser requests a page from our hosting provider or content delivery network (CDN), standard network metadata—such as your IP address, browser user-agent string, requested file path, and timestamp—is automatically transmitted over HTTPS as part of normal internet routing.
+        </p>
+        <p>
+          Our static infrastructure provider processes this technical metadata solely to serve pages reliably, enforce TLS encryption, and defend against automated denial-of-service attacks. Kinoku does not link this metadata to any individual identity.
+        </p>
+      </div>
+
+      <div class="policy-section" id="sec-6">
+        <h2>6. External Third-Party Websites &amp; Outbound Links</h2>
+        <p>
+          Kinoku is strictly a web index. Every website listed under Movies/TV, Anime, Hentai, Index, Torrets, and Forums is an independent third-party platform owned and operated outside of Kinoku's control.
+        </p>
+        <p>
+          Once you click an outbound link and leave Kinoku, this Privacy Policy no longer applies. External sites may deploy their own cookies, analytics, pop-up ads, redirect scripts, or third-party ad networks. Kinoku assumes no responsibility for the privacy practices, security, or content of any linked external website.
+        </p>
+      </div>
+
+      <div class="policy-section" id="sec-7">
+        <h2>7. Recommended Privacy &amp; Ad-Blocking Tools</h2>
+        <p>
+          Because third-party streaming, torrent, and forum websites frequently run intrusive advertising or tracking scripts, we strongly advise every visitor to use content-blocking software before opening external links:
+        </p>
+        <ul>
+          <li><strong>Desktop Browsers:</strong> Install <a href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin</a> (best paired with <a href="https://www.firefox.com/" target="_blank" rel="noopener noreferrer">Firefox</a>) to block pop-ups, malicious redirects, and third-party trackers.</li>
+          <li><strong>Mobile Devices:</strong> Use <a href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave Browser</a> or <a href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">DuckDuckGo Browser</a> for built-in tracker and pop-up protection.</li>
+          <li><strong>Smart TVs:</strong> Use <a href="https://browsehere.net/en/" target="_blank" rel="noopener noreferrer">BrowseHere</a> on Google TV and Android TV devices.</li>
+          <li><strong>Additional Hardening:</strong> Avoid entering real email addresses, reusing passwords, or downloading executable files from unverified third-party streaming pages.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section" id="sec-8">
+        <h2>8. Donations &amp; External Payment Processors</h2>
+        <p>
+          If you choose to support Kinoku via the Donate button, you will be redirected to an external payment platform (such as Ko-fi or PayPal). Kinoku never sees, processes, or stores your credit card number, bank details, or billing address. All payment transactions are governed exclusively by the privacy policy and security standards of the chosen payment provider.
+        </p>
+      </div>
+
+      <div class="policy-section" id="sec-9">
+        <h2>9. Community Submissions &amp; Discord</h2>
+        <p>
+          If you share a website URL, category suggestion, or ad-score report via our Discord server or community channels, any message you post is subject to Discord's own Terms of Service and Privacy Policy. Please only share public website URLs and never post private, sensitive, or personally identifying details in public channels.
+        </p>
+      </div>
+
+      <div class="policy-section" id="sec-10">
+        <h2>10. Age Restrictions &amp; Adult Categories</h2>
+        <p>
+          Kinoku is intended for general audiences, and certain sections of the index (such as the Hentai category) link to adult-oriented external websites intended strictly for individuals who are at least 18 years of age (or the age of legal majority in their jurisdiction). Kinoku does not knowingly collect any data from minors.
+        </p>
+      </div>
+
+      <div class="policy-section" id="sec-11">
+        <h2>11. Your Control &amp; How to Clear Local Data</h2>
+        <p>
+          Because Kinoku does not hold any of your personal data on a remote server, you have direct, immediate control over all data stored on your device:
+        </p>
+        <ul>
+          <li>You can remove individual saved entries anytime by clicking the <strong>Remove</strong> button on any site card.</li>
+          <li>You can wipe all locally saved Kinoku preferences at once by clearing your browser's site data / <code>localStorage</code> for this domain.</li>
+          <li>You can block network-level referrers by using a privacy-focused browser or enabling strict tracking protection.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section" id="sec-12">
+        <h2>12. Updates to This Privacy Policy</h2>
+        <p>
+          We reserve the right to revise or expand this Privacy Policy whenever new features, categories, or hosting configurations are introduced to Kinoku. Any updates take effect immediately upon being published on this page, reflected by the Effective Date at the top.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-disclaimer">
+    Disclaimer: Kinoku is strictly a web index and does not host, upload, stream, or store any movies, TV shows, anime, or video files on our servers. All links lead to external third-party sites.
+  </div>
+  <div class="footer-links">
