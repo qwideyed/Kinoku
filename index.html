@@ -3,28 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kinoku — Open Media Web Index</title>
+<title>Kinoku</title>
 <style>
 :root {
-  --bg: #0f1115;
-  --surface: #161920;
-  --surface-hover: #1d212b;
-  --border: #282d38;
+  --bg: #0e1014;
+  --surface: #151820;
+  --surface-alt: #1b1f29;
+  --border: #262b36;
   --text: #e6e8ec;
-  --text-muted: #939aa8;
+  --text-muted: #969dab;
   --accent: #4c8bf5;
   --accent-hover: #3b7ae4;
   --donate: #e05d44;
   --donate-hover: #c94e36;
-  --danger: #d9534f;
-  --tag-anime: #263859;
+  --tag-anime: #243757;
   --tag-anime-text: #8ab4f8;
-  --tag-movies: #3b2b4a;
+  --tag-movies: #392948;
   --tag-movies-text: #c58af9;
-  --tag-tv: #1f3d36;
+  --tag-tv: #1e3b35;
   --tag-tv-text: #78d9ec;
-  --tag-general: #33363f;
-  --tag-general-text: #bdc1c6;
+  --tag-multi: #2f333d;
+  --tag-multi-text: #bdc1c6;
+  --score-green: #1e3a2f;
+  --score-green-text: #81c995;
+  --score-yellow: #3d331e;
+  --score-yellow-text: #fdd663;
+  --score-red: #3f2224;
+  --score-red-text: #f28b82;
 }
 
 * {
@@ -37,10 +42,19 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.55;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 header {
@@ -52,40 +66,25 @@ header {
 }
 
 .nav-container {
-  max-width: 1120px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
-  height: 60px;
+  height: 58px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
 }
 
 .brand {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
   text-decoration: none;
   color: var(--text);
 }
 
 .brand-title {
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-}
-
-.brand-sub {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  display: none;
-}
-
-@media (min-width: 640px) {
-  .brand-sub {
-    display: inline;
-  }
 }
 
 .nav-actions {
@@ -99,7 +98,7 @@ header {
 }
 
 .btn {
-  background-color: var(--surface-hover);
+  background-color: var(--surface-alt);
   color: var(--text);
   border: 1px solid var(--border);
   padding: 7px 13px;
@@ -114,7 +113,7 @@ header {
 }
 
 .btn:hover {
-  background-color: #252a36;
+  background-color: #232836;
   border-color: #3a4150;
 }
 
@@ -168,13 +167,10 @@ header {
   font-size: 0.875rem;
   border-radius: 4px;
   cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .dropdown-item:hover {
-  background-color: var(--surface-hover);
+  background-color: var(--surface-alt);
 }
 
 .dropdown-item.active {
@@ -182,25 +178,124 @@ header {
   font-weight: 600;
 }
 
-.dropdown-divider {
-  height: 1px;
-  background-color: var(--border);
-  margin: 4px 0;
-}
-
 main {
-  max-width: 1120px;
+  max-width: 1100px;
   width: 100%;
   margin: 0 auto;
   padding: 24px 20px 48px;
   flex: 1;
 }
 
+.intro-panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 24px;
+}
+
+.intro-about {
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.intro-about h1 {
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+}
+
+.intro-about p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.browser-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.85rem;
+}
+
+.browser-pill {
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 5px;
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.browser-pill:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.guidelines-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 780px) {
+  .guidelines-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.guide-box {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.guide-box h2 {
+  font-size: 0.98rem;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.guide-list {
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: grid;
+  gap: 6px;
+}
+
+.guide-list li {
+  padding-left: 14px;
+  position: relative;
+}
+
+.guide-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.score-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.dot-green { background-color: #81c995; }
+.dot-yellow { background-color: #fdd663; }
+.dot-red { background-color: #f28b82; }
+
 .controls-bar {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   align-items: center;
   justify-content: space-between;
 }
@@ -208,7 +303,6 @@ main {
 .search-box {
   flex: 1;
   min-width: 240px;
-  position: relative;
 }
 
 .search-box input {
@@ -218,7 +312,7 @@ main {
   color: var(--text);
   padding: 9px 14px;
   border-radius: 6px;
-  font-size: 0.925rem;
+  font-size: 0.92rem;
   outline: none;
 }
 
@@ -234,52 +328,42 @@ main {
   color: var(--text-muted);
 }
 
-.index-table-wrap {
+.site-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  gap: 14px;
+}
+
+.site-card {
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
-  overflow-x: auto;
+  padding: 15px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  transition: border-color 0.15s, background-color 0.15s;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  font-size: 0.9rem;
+.site-card:hover {
+  border-color: #3a4150;
+  background-color: var(--surface-alt);
 }
 
-th {
-  background-color: #12151b;
-  color: var(--text-muted);
-  font-weight: 600;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
-}
-
-td {
-  padding: 13px 16px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: middle;
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-tr:hover td {
-  background-color: var(--surface-hover);
+.site-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .site-link {
   color: var(--text);
   font-weight: 600;
+  font-size: 1rem;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  word-break: break-word;
 }
 
 .site-link:hover {
@@ -291,14 +375,30 @@ tr:hover td {
   display: block;
   font-size: 0.78rem;
   color: var(--text-muted);
-  font-weight: 400;
+  margin-top: 2px;
+}
+
+.site-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.badges-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 .badge {
   display: inline-block;
   padding: 3px 8px;
   border-radius: 4px;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -319,28 +419,33 @@ tr:hover td {
 }
 
 .badge-Multi {
-  background-color: var(--tag-general);
-  color: var(--tag-general-text);
+  background-color: var(--tag-multi);
+  color: var(--tag-multi-text);
 }
 
-.desc-cell {
-  color: var(--text-muted);
-  max-width: 420px;
+.score-Green {
+  background-color: var(--score-green);
+  color: var(--score-green-text);
 }
 
-.action-cell {
-  text-align: right;
-  white-space: nowrap;
+.score-Yellow {
+  background-color: var(--score-yellow);
+  color: var(--score-yellow-text);
+}
+
+.score-Red {
+  background-color: var(--score-red);
+  color: var(--score-red-text);
 }
 
 .btn-delete {
   background: none;
   border: 1px solid transparent;
   color: var(--text-muted);
-  padding: 4px 8px;
+  padding: 3px 7px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
 }
 
 .btn-delete:hover {
@@ -350,8 +455,11 @@ tr:hover td {
 }
 
 .empty-state {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
   text-align: center;
-  padding: 48px 20px;
+  padding: 44px 20px;
   color: var(--text-muted);
 }
 
@@ -375,7 +483,7 @@ tr:hover td {
   border: 1px solid var(--border);
   border-radius: 8px;
   width: 100%;
-  max-width: 460px;
+  max-width: 440px;
   padding: 22px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
@@ -417,8 +525,7 @@ tr:hover td {
 }
 
 .form-group input,
-.form-group select,
-.form-group textarea {
+.form-group select {
   width: 100%;
   background-color: var(--bg);
   border: 1px solid var(--border);
@@ -431,8 +538,7 @@ tr:hover td {
 }
 
 .form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.form-group select:focus {
   border-color: var(--accent);
 }
 
@@ -489,70 +595,94 @@ footer {
   <div class="nav-container">
     <a href="#" class="brand" id="resetHome">
       <span class="brand-title">Kinoku</span>
-      <span class="brand-sub">Web Index for Anime, Movies &amp; TV</span>
     </a>
 
     <div class="nav-actions">
       <div class="dropdown">
         <button class="btn" id="catDropdownBtn" type="button">
-          Category: <strong id="currentCatLabel">All</strong> ▾
+          Category: <strong id="currentCatLabel">All</strong> &#9662;
         </button>
         <div class="dropdown-menu" id="catDropdownMenu">
           <button class="dropdown-item active" data-cat="All">All Entries</button>
           <button class="dropdown-item" data-cat="Anime">Anime</button>
           <button class="dropdown-item" data-cat="Movies">Movies</button>
           <button class="dropdown-item" data-cat="TV">TV Shows</button>
-          <button class="dropdown-item" data-cat="Multi">Multi-Media / Index</button>
+          <button class="dropdown-item" data-cat="Multi">Multi-Media</button>
         </div>
       </div>
 
-      <div class="dropdown">
-        <button class="btn" id="manageDropdownBtn" type="button">Index ▾</button>
-        <div class="dropdown-menu" id="manageDropdownMenu">
-          <button class="dropdown-item" id="openAddModalBtn">+ Add Website</button>
-          <div class="dropdown-divider"></div>
-          <button class="dropdown-item" id="exportJsonBtn">Export JSON</button>
-          <button class="dropdown-item" id="importJsonBtn">Import JSON</button>
-          <button class="dropdown-item" id="resetDefaultBtn">Reset Defaults</button>
-        </div>
-      </div>
-
-      <button class="btn btn-donate" id="openDonateBtn" type="button">♥ Donate</button>
+      <button class="btn btn-donate" id="openDonateBtn" type="button">&#9829; Donate</button>
     </div>
   </div>
 </header>
 
 <main>
+  <section class="intro-panel">
+    <div class="intro-about">
+      <h1>About Kinoku</h1>
+      <p>
+        Kinoku is a curated web index of websites for watching and tracking Anime, Movies, and TV Shows. When visiting external websites listed below, always use an ad-blocker or a privacy browser with built-in ad-blocking:
+      </p>
+      <div class="browser-bar">
+        <a class="browser-pill" href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin (Ad-Blocker)</a>
+        <a class="browser-pill" href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave Browser</a>
+        <a class="browser-pill" href="https://www.firefox.com/" target="_blank" rel="noopener noreferrer">Firefox</a>
+        <a class="browser-pill" href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">DuckDuckGo Browser</a>
+      </div>
+    </div>
+
+    <div class="guidelines-grid">
+      <div class="guide-box">
+        <h2>Minimum requirements for best free streaming:</h2>
+        <ul class="guide-list">
+          <li>100% Free</li>
+          <li>1080p or 720p</li>
+          <li>NO account required</li>
+          <li>NO geoblocking</li>
+          <li>Mobile friendly</li>
+          <li>Works with ad-blocker</li>
+          <li>English website</li>
+          <li>Easy to start watching</li>
+          <li>Easy to find S02E03</li>
+          <li>New movies/tv shows</li>
+          <li>Old movies/tv shows</li>
+          <li>Not hosted on free subdomain</li>
+          <li>I would personally use it daily</li>
+        </ul>
+      </div>
+
+      <div class="guide-box">
+        <h2>Ad-score explained:</h2>
+        <ul class="guide-list">
+          <li><span class="score-dot dot-green"></span>Pop ads are not detected.</li>
+          <li><span class="score-dot dot-yellow"></span>Pop ads are mostly blocked. May have captcha. Ad-blocker may interfere.</li>
+          <li><span class="score-dot dot-red"></span>Pop ads may redirect from current page. Ad-blocker may interfere. Intrusive ads.</li>
+          <li>Test is done with Adblock Plus and <a href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin</a> on desktop, and <a href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">DuckDuckGo</a> browser on mobile.</li>
+          <li>For more comprehensive ad-blocking, use <a href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave</a> browser on mobile. Also recommended: BrowseHere for Google/Android TV.</li>
+          <li>How ads are implemented may change over time so always use an ad-blocker (or <a href="https://www.firefox.com/" target="_blank" rel="noopener noreferrer">Firefox</a> + uBlock Origin) when visiting these websites.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <div class="controls-bar">
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Filter index by site name, URL, tags, or description...">
+      <input type="text" id="searchInput" placeholder="Search indexed websites by name, domain, or category...">
     </div>
     <div class="stats-bar">
-      <span id="entryCount">0 sites indexed</span>
-      <button class="btn btn-primary" id="quickAddBtn" type="button">+ Add Site</button>
+      <span id="entryCount">0 sites</span>
+      <button class="btn btn-primary" id="quickAddBtn" type="button">+ Add Website</button>
     </div>
   </div>
 
-  <div class="index-table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th style="width: 26%;">Website</th>
-          <th style="width: 14%;">Category</th>
-          <th style="width: 48%;">Description &amp; Notes</th>
-          <th style="width: 12%; text-align: right;">Action</th>
-        </tr>
-      </thead>
-      <tbody id="indexTableBody"></tbody>
-    </table>
-    <div class="empty-state" id="emptyState" style="display: none;">
-      No indexed websites match your current filter.
-    </div>
+  <div class="site-grid" id="siteGrid"></div>
+  <div class="empty-state" id="emptyState" style="display: none;">
+    No websites match your current filter.
   </div>
 </main>
 
 <footer>
-  Kinoku Directory &mdash; Community Web Index for Anime, Movies &amp; Television.
+  Kinoku Web Index &mdash; Use uBlock Origin, Brave, Firefox, or DuckDuckGo when browsing external links.
 </footer>
 
 <div class="modal-backdrop" id="addModal">
@@ -576,16 +706,20 @@ footer {
           <option value="Anime">Anime</option>
           <option value="Movies">Movies</option>
           <option value="TV">TV Shows</option>
-          <option value="Multi">Multi-Media / Index</option>
+          <option value="Multi">Multi-Media</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="siteDesc">Description</label>
-        <textarea id="siteDesc" rows="3" required placeholder="Brief summary of what this site offers..."></textarea>
+        <label for="siteAdScore">Ad-Score</label>
+        <select id="siteAdScore" required>
+          <option value="Green">Green — No pop ads detected</option>
+          <option value="Yellow">Yellow — Mostly blocked / may have captcha</option>
+          <option value="Red">Red — Pop ads may redirect / intrusive</option>
+        </select>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-close="addModal">Cancel</button>
-        <button type="submit" class="btn btn-primary">Save to Index</button>
+        <button type="submit" class="btn btn-primary">Add to Index</button>
       </div>
     </form>
   </div>
@@ -598,16 +732,12 @@ footer {
       <button class="close-btn" data-close="donateModal">&times;</button>
     </div>
     <p style="font-size: 0.9rem; color: var(--text-muted);">
-      Kinoku is an independent, ad-free web index. Donations help keep the directory maintained and accessible for everyone.
+      Kinoku is an independent web index. Donations help keep the site maintained and online.
     </p>
     <div class="donate-options">
       <div class="donate-card">
         <span><strong>Ko-fi</strong> &mdash; One-time tip</span>
         <a href="https://ko-fi.com" target="_blank" rel="noopener noreferrer">Donate &rarr;</a>
-      </div>
-      <div class="donate-card">
-        <span><strong>GitHub Sponsors</strong> &mdash; Monthly support</span>
-        <a href="https://github.com/sponsors" target="_blank" rel="noopener noreferrer">Sponsor &rarr;</a>
       </div>
       <div class="donate-card">
         <span><strong>PayPal</strong> &mdash; Direct contribution</span>
@@ -620,54 +750,16 @@ footer {
   </div>
 </div>
 
-<input type="file" id="importFileInput" accept=".json" style="display: none;">
-
 <script>
-const STORAGE_KEY = 'kinoku_web_index_v1';
+const STORAGE_KEY = 'kinoku_web_index_v2';
 
 const DEFAULT_SITES = [
-  {
-    id: '1',
-    name: 'AniList',
-    url: 'https://anilist.co',
-    category: 'Anime',
-    desc: 'Modern anime and manga tracking database with seasonal charts, stats, and community lists.'
-  },
-  {
-    id: '2',
-    name: 'MyAnimeList',
-    url: 'https://myanimelist.net',
-    category: 'Anime',
-    desc: 'Comprehensive anime and manga catalog, user reviews, episode forums, and popularity rankings.'
-  },
-  {
-    id: '3',
-    name: 'TMDB (The Movie Database)',
-    url: 'https://www.themoviedb.org',
-    category: 'Multi',
-    desc: 'Community-built metadata database for movies, television series, cast credits, and streaming availability.'
-  },
-  {
-    id: '4',
-    name: 'Letterboxd',
-    url: 'https://letterboxd.com',
-    category: 'Movies',
-    desc: 'Social film discovery platform for logging watched movies, building lists, and reading reviews.'
-  },
-  {
-    id: '5',
-    name: 'Trakt',
-    url: 'https://trakt.tv',
-    category: 'TV',
-    desc: 'Automatic watch-history tracker and release calendar for television episodes and feature films.'
-  },
-  {
-    id: '6',
-    name: 'JustWatch',
-    url: 'https://www.justwatch.com',
-    category: 'Multi',
-    desc: 'Streaming search engine showing where movies, TV shows, and anime are legally available to watch.'
-  }
+  { id: '1', name: 'AniList', url: 'https://anilist.co', category: 'Anime', adScore: 'Green' },
+  { id: '2', name: 'MyAnimeList', url: 'https://myanimelist.net', category: 'Anime', adScore: 'Green' },
+  { id: '3', name: 'TMDB', url: 'https://www.themoviedb.org', category: 'Multi', adScore: 'Green' },
+  { id: '4', name: 'Letterboxd', url: 'https://letterboxd.com', category: 'Movies', adScore: 'Green' },
+  { id: '5', name: 'Trakt', url: 'https://trakt.tv', category: 'TV', adScore: 'Green' },
+  { id: '6', name: 'JustWatch', url: 'https://www.justwatch.com', category: 'Multi', adScore: 'Green' }
 ];
 
 let sites = [];
@@ -706,8 +798,8 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
-function renderTable() {
-  const tbody = document.getElementById('indexTableBody');
+function renderGrid() {
+  const grid = document.getElementById('siteGrid');
   const emptyState = document.getElementById('emptyState');
   const countLabel = document.getElementById('entryCount');
 
@@ -717,48 +809,45 @@ function renderTable() {
     const matchesQuery =
       site.name.toLowerCase().includes(q) ||
       site.url.toLowerCase().includes(q) ||
-      site.desc.toLowerCase().includes(q) ||
       site.category.toLowerCase().includes(q);
     return matchesCat && matchesQuery;
   });
 
-  countLabel.textContent = `${filtered.length} ${filtered.length === 1 ? 'site' : 'sites'} indexed`;
+  countLabel.textContent = `${filtered.length} ${filtered.length === 1 ? 'site' : 'sites'}`;
 
   if (filtered.length === 0) {
-    tbody.innerHTML = '';
+    grid.innerHTML = '';
     emptyState.style.display = 'block';
     return;
   }
 
   emptyState.style.display = 'none';
-  tbody.innerHTML = filtered.map(site => `
-    <tr>
-      <td>
-        <a class="site-link" href="${escapeHtml(site.url)}" target="_blank" rel="noopener noreferrer">
-          ${escapeHtml(site.name)} &#8599;
-        </a>
-        <span class="site-domain">${escapeHtml(extractDomain(site.url))}</span>
-      </td>
-      <td>
-        <span class="badge badge-${escapeHtml(site.category)}">${escapeHtml(site.category)}</span>
-      </td>
-      <td class="desc-cell">${escapeHtml(site.desc)}</td>
-      <td class="action-cell">
-        <button class="btn-delete" data-id="${escapeHtml(site.id)}" title="Remove entry">Remove</button>
-      </td>
-    </tr>
-  `).join('');
-}
-
-function toggleDropdown(menuId) {
-  document.querySelectorAll('.dropdown-menu').forEach(menu => {
-    if (menu.id !== menuId) menu.classList.remove('open');
-  });
-  document.getElementById(menuId).classList.toggle('open');
+  grid.innerHTML = filtered.map(site => {
+    const score = site.adScore || 'Green';
+    return `
+      <div class="site-card">
+        <div class="site-card-top">
+          <div>
+            <a class="site-link" href="${escapeHtml(site.url)}" target="_blank" rel="noopener noreferrer">
+              ${escapeHtml(site.name)} &#8599;
+            </a>
+            <span class="site-domain">${escapeHtml(extractDomain(site.url))}</span>
+          </div>
+        </div>
+        <div class="site-card-bottom">
+          <div class="badges-wrap">
+            <span class="badge badge-${escapeHtml(site.category)}">${escapeHtml(site.category)}</span>
+            <span class="badge score-${escapeHtml(score)}">Ad-Score: ${escapeHtml(score)}</span>
+          </div>
+          <button class="btn-delete" data-id="${escapeHtml(site.id)}" title="Remove site">Remove</button>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 function openModal(modalId) {
-  document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+  document.getElementById('catDropdownMenu').classList.remove('open');
   document.getElementById(modalId).classList.add('open');
 }
 
@@ -768,16 +857,11 @@ function closeModal(modalId) {
 
 document.getElementById('catDropdownBtn').addEventListener('click', e => {
   e.stopPropagation();
-  toggleDropdown('catDropdownMenu');
-});
-
-document.getElementById('manageDropdownBtn').addEventListener('click', e => {
-  e.stopPropagation();
-  toggleDropdown('manageDropdownMenu');
+  document.getElementById('catDropdownMenu').classList.toggle('open');
 });
 
 document.addEventListener('click', () => {
-  document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+  document.getElementById('catDropdownMenu').classList.remove('open');
 });
 
 document.querySelectorAll('#catDropdownMenu .dropdown-item').forEach(btn => {
@@ -786,13 +870,13 @@ document.querySelectorAll('#catDropdownMenu .dropdown-item').forEach(btn => {
     document.getElementById('currentCatLabel').textContent = activeCategory;
     document.querySelectorAll('#catDropdownMenu .dropdown-item').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    renderTable();
+    renderGrid();
   });
 });
 
 document.getElementById('searchInput').addEventListener('input', e => {
   searchQuery = e.target.value.trim();
-  renderTable();
+  renderGrid();
 });
 
 document.getElementById('resetHome').addEventListener('click', e => {
@@ -804,10 +888,9 @@ document.getElementById('resetHome').addEventListener('click', e => {
   document.querySelectorAll('#catDropdownMenu .dropdown-item').forEach(b => {
     b.classList.toggle('active', b.dataset.cat === 'All');
   });
-  renderTable();
+  renderGrid();
 });
 
-document.getElementById('openAddModalBtn').addEventListener('click', () => openModal('addModal'));
 document.getElementById('quickAddBtn').addEventListener('click', () => openModal('addModal'));
 document.getElementById('openDonateBtn').addEventListener('click', () => openModal('donateModal'));
 
@@ -826,76 +909,35 @@ document.getElementById('addSiteForm').addEventListener('submit', e => {
   const name = document.getElementById('siteName').value.trim();
   const url = document.getElementById('siteUrl').value.trim();
   const category = document.getElementById('siteCategory').value;
-  const desc = document.getElementById('siteDesc').value.trim();
+  const adScore = document.getElementById('siteAdScore').value;
 
-  if (!name || !url || !desc) return;
+  if (!name || !url) return;
 
   sites.unshift({
     id: Date.now().toString(),
     name,
     url,
     category,
-    desc
+    adScore
   });
 
   saveSites();
-  renderTable();
+  renderGrid();
   e.target.reset();
   closeModal('addModal');
 });
 
-document.getElementById('indexTableBody').addEventListener('click', e => {
+document.getElementById('siteGrid').addEventListener('click', e => {
   if (e.target.classList.contains('btn-delete')) {
     const id = e.target.dataset.id;
     sites = sites.filter(s => s.id !== id);
     saveSites();
-    renderTable();
+    renderGrid();
   }
 });
 
-document.getElementById('exportJsonBtn').addEventListener('click', () => {
-  const dataStr = JSON.stringify(sites, null, 2);
-  const blob = new Blob([dataStr], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'kinoku-index.json';
-  a.click();
-  URL.revokeObjectURL(url);
-});
-
-document.getElementById('importJsonBtn').addEventListener('click', () => {
-  document.getElementById('importFileInput').click();
-});
-
-document.getElementById('importFileInput').addEventListener('change', e => {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = event => {
-    try {
-      const imported = JSON.parse(event.target.result);
-      if (Array.isArray(imported)) {
-        sites = imported;
-        saveSites();
-        renderTable();
-      }
-    } catch (err) {
-      alert('Invalid JSON file.');
-    }
-  };
-  reader.readAsText(file);
-  e.target.value = '';
-});
-
-document.getElementById('resetDefaultBtn').addEventListener('click', () => {
-  sites = [...DEFAULT_SITES];
-  saveSites();
-  renderTable();
-});
-
 loadSites();
-renderTable();
+renderGrid();
 </script>
 </body>
 </html>
