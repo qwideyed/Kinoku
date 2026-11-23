@@ -1,152 +1,901 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kinoku — Creator & Sponsor Marketplace</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinoku — Open Media Web Index</title>
+<style>
+:root {
+  --bg: #0f1115;
+  --surface: #161920;
+  --surface-hover: #1d212b;
+  --border: #282d38;
+  --text: #e6e8ec;
+  --text-muted: #939aa8;
+  --accent: #4c8bf5;
+  --accent-hover: #3b7ae4;
+  --donate: #e05d44;
+  --donate-hover: #c94e36;
+  --danger: #d9534f;
+  --tag-anime: #263859;
+  --tag-anime-text: #8ab4f8;
+  --tag-movies: #3b2b4a;
+  --tag-movies-text: #c58af9;
+  --tag-tv: #1f3d36;
+  --tag-tv-text: #78d9ec;
+  --tag-general: #33363f;
+  --tag-general-text: #bdc1c6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.brand-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.brand-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .brand-sub {
+    display: inline;
+  }
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.btn {
+  background-color: var(--surface-hover);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 7px 13px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  background-color: #252a36;
+  border-color: #3a4150;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-donate {
+  background-color: var(--donate);
+  border-color: var(--donate);
+  color: #ffffff;
+}
+
+.btn-donate:hover {
+  background-color: var(--donate-hover);
+  border-color: var(--donate-hover);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  min-width: 190px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  display: none;
+  flex-direction: column;
+  padding: 6px;
+  z-index: 200;
+}
+
+.dropdown-menu.open {
+  display: flex;
+}
+
+.dropdown-item {
+  background: none;
+  border: none;
+  color: var(--text);
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-item:hover {
+  background-color: var(--surface-hover);
+}
+
+.dropdown-item.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: var(--border);
+  margin: 4px 0;
+}
+
+main {
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  flex: 1;
+}
+
+.controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 240px;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 14px;
+  border-radius: 6px;
+  font-size: 0.925rem;
+  outline: none;
+}
+
+.search-box input:focus {
+  border-color: var(--accent);
+}
+
+.stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.index-table-wrap {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+th {
+  background-color: #12151b;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background-color: var(--surface-hover);
+}
+
+.site-link {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.site-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.site-domain {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-Anime {
+  background-color: var(--tag-anime);
+  color: var(--tag-anime-text);
+}
+
+.badge-Movies {
+  background-color: var(--tag-movies);
+  color: var(--tag-movies-text);
+}
+
+.badge-TV {
+  background-color: var(--tag-tv);
+  color: var(--tag-tv-text);
+}
+
+.badge-Multi {
+  background-color: var(--tag-general);
+  color: var(--tag-general-text);
+}
+
+.desc-cell {
+  color: var(--text-muted);
+  max-width: 420px;
+}
+
+.action-cell {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.btn-delete {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.btn-delete:hover {
+  color: #ff7b72;
+  border-color: rgba(255, 123, 114, 0.3);
+  background-color: rgba(255, 123, 114, 0.08);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--text-muted);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 300;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 460px;
+  padding: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: var(--text);
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 11px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.donate-options {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.donate-card {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.donate-card span {
+  font-size: 0.88rem;
+}
+
+.donate-card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.donate-card a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 18px 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+</style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="container nav-inner">
-      <div class="brand">
-        <span class="brand-dot"></span>
-        <span class="brand-name">Kinoku</span>
-        <span class="brand-tag">PROTOTYPE</span>
-      </div>
 
-      <div class="role-switcher" role="group" aria-label="Switch user role">
-        <button id="roleCreatorBtn" class="role-btn active" data-role="creator">Creator View</button>
-        <button id="roleCompanyBtn" class="role-btn" data-role="company">Company View</button>
-      </div>
+<header>
+  <div class="nav-container">
+    <a href="#" class="brand" id="resetHome">
+      <span class="brand-title">Kinoku</span>
+      <span class="brand-sub">Web Index for Anime, Movies &amp; TV</span>
+    </a>
 
-      <button id="primaryCreateBtn" class="btn btn-primary">+ Pitch Upcoming Video</button>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <div class="hero-copy">
-        <span id="heroBadge" class="hero-badge">Creator Mode • Keep 100% of your rate</span>
-        <h1 id="heroTitle">Find brands ready to sponsor your next video.</h1>
-        <p id="heroSubtitle">Browse active product campaigns from companies looking for creators, or pitch the exact video you are working on right now.</p>
-      </div>
-      <div class="hero-escrow-card">
-        <div class="escrow-title">Safe Deal Middleman Protection</div>
-        <p class="escrow-desc">Companies fund the deal + a 5% protection fee upfront. Kinoku holds it safely until the video goes live—or refunds 100% (including the 5% fee) if the deadline is missed.</p>
-      </div>
-    </section>
-
-    <section class="controls">
-      <div class="board-tabs">
-        <button id="tabPitches" class="tab-btn" data-board="pitch">
-          Upcoming Video Pitches <span id="pitchCount" class="count-pill">0</span>
+    <div class="nav-actions">
+      <div class="dropdown">
+        <button class="btn" id="catDropdownBtn" type="button">
+          Category: <strong id="currentCatLabel">All</strong> ▾
         </button>
-        <button id="tabCampaigns" class="tab-btn active" data-board="campaign">
-          Company Campaigns <span id="campaignCount" class="count-pill">0</span>
-        </button>
-      </div>
-
-      <div class="filter-bar">
-        <input
-          type="search"
-          id="searchInput"
-          class="search-input"
-          placeholder="Search video ideas, products, niches, or creators..."
-        />
-        <div id="categoryFilters" class="category-pills">
-          <button class="cat-pill active" data-category="All">All</button>
-          <button class="cat-pill" data-category="Tech & Gaming">Tech & Gaming</button>
-          <button class="cat-pill" data-category="Lifestyle & Vlog">Lifestyle & Vlog</button>
-          <button class="cat-pill" data-category="Finance & Business">Finance & Business</button>
-          <button class="cat-pill" data-category="Education">Education</button>
-          <button class="cat-pill" data-category="Entertainment">Entertainment</button>
+        <div class="dropdown-menu" id="catDropdownMenu">
+          <button class="dropdown-item active" data-cat="All">All Entries</button>
+          <button class="dropdown-item" data-cat="Anime">Anime</button>
+          <button class="dropdown-item" data-cat="Movies">Movies</button>
+          <button class="dropdown-item" data-cat="TV">TV Shows</button>
+          <button class="dropdown-item" data-cat="Multi">Multi-Media / Index</button>
         </div>
       </div>
-    </section>
 
-    <section id="feedGrid" class="feed-grid"></section>
+      <div class="dropdown">
+        <button class="btn" id="manageDropdownBtn" type="button">Index ▾</button>
+        <div class="dropdown-menu" id="manageDropdownMenu">
+          <button class="dropdown-item" id="openAddModalBtn">+ Add Website</button>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="exportJsonBtn">Export JSON</button>
+          <button class="dropdown-item" id="importJsonBtn">Import JSON</button>
+          <button class="dropdown-item" id="resetDefaultBtn">Reset Defaults</button>
+        </div>
+      </div>
 
-    <div id="emptyState" class="empty-state hidden">
-      <h3>No listings match your filter</h3>
-      <p>Try clearing your search term or switching categories.</p>
+      <button class="btn btn-donate" id="openDonateBtn" type="button">♥ Donate</button>
     </div>
-  </main>
+  </div>
+</header>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span>Kinoku Layer 1 — Two-Way Sponsorship Board</span>
-      <button id="resetDemoBtn" class="btn-link">Reset Demo Data</button>
+<main>
+  <div class="controls-bar">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Filter index by site name, URL, tags, or description...">
     </div>
-  </footer>
-
-  <!-- Create Listing Modal -->
-  <div id="createModal" class="modal-backdrop hidden" aria-hidden="true">
-    <div class="modal">
-      <div class="modal-header">
-        <h2>Create New Listing</h2>
-        <button id="closeCreateModal" class="icon-btn" aria-label="Close modal">&times;</button>
-      </div>
-
-      <div class="post-type-toggle">
-        <button type="button" id="postTypePitch" class="type-btn active" data-type="pitch">Creator Video Pitch</button>
-        <button type="button" id="postTypeCompany" class="type-btn" data-type="campaign">Company Campaign</button>
-      </div>
-
-      <form id="createForm" class="form">
-        <div class="form-row">
-          <label for="inputAuthor" id="authorLabel">Creator Name / Channel Handle</label>
-          <input type="text" id="inputAuthor" required placeholder="e.g., @AlexBuilds" />
-        </div>
-
-        <div class="form-row two-col">
-          <div>
-            <label for="inputCategory">Category</label>
-            <select id="inputCategory" required>
-              <option value="Tech & Gaming">Tech & Gaming</option>
-              <option value="Lifestyle & Vlog">Lifestyle & Vlog</option>
-              <option value="Finance & Business">Finance & Business</option>
-              <option value="Education">Education</option>
-              <option value="Entertainment">Entertainment</option>
-            </select>
-          </div>
-          <div>
-            <label for="inputTimeline">Target Upload / Deadline</label>
-            <input type="text" id="inputTimeline" required placeholder="e.g., Dropping in 10 days" />
-          </div>
-        </div>
-
-        <div class="form-row">
-          <label for="inputTitle" id="titleLabel">Working Video Title</label>
-          <input type="text" id="inputTitle" required placeholder="e.g., I Tested 5 Budget Desk Setups Under $200" />
-        </div>
-
-        <div class="form-row">
-          <label for="inputDetails" id="detailsLabel">Video Concept & Sponsor Integration Idea</label>
-          <textarea id="inputDetails" rows="3" required placeholder="Describe what you're filming, your audience, and how a sponsor fits naturally..."></textarea>
-        </div>
-
-        <div class="form-row">
-          <label for="inputAmount" id="amountLabel">Asking Sponsorship Rate ($ USD)</label>
-          <input type="number" id="inputAmount" min="10" step="5" required placeholder="450" />
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-full">Publish to Board</button>
-      </form>
+    <div class="stats-bar">
+      <span id="entryCount">0 sites indexed</span>
+      <button class="btn btn-primary" id="quickAddBtn" type="button">+ Add Site</button>
     </div>
   </div>
 
-  <!-- Listing Quick Preview & Fee Calculator Modal -->
-  <div id="previewModal" class="modal-backdrop hidden" aria-hidden="true">
-    <div class="modal">
-      <div class="modal-header">
-        <h2 id="previewModalTitle">Listing Details</h2>
-        <button id="closePreviewModal" class="icon-btn" aria-label="Close modal">&times;</button>
-      </div>
-      <div id="previewContent"></div>
+  <div class="index-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 26%;">Website</th>
+          <th style="width: 14%;">Category</th>
+          <th style="width: 48%;">Description &amp; Notes</th>
+          <th style="width: 12%; text-align: right;">Action</th>
+        </tr>
+      </thead>
+      <tbody id="indexTableBody"></tbody>
+    </table>
+    <div class="empty-state" id="emptyState" style="display: none;">
+      No indexed websites match your current filter.
     </div>
   </div>
+</main>
 
-  <script src="app.js"></script>
+<footer>
+  Kinoku Directory &mdash; Community Web Index for Anime, Movies &amp; Television.
+</footer>
+
+<div class="modal-backdrop" id="addModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Add Website to Kinoku</h2>
+      <button class="close-btn" data-close="addModal">&times;</button>
+    </div>
+    <form id="addSiteForm">
+      <div class="form-group">
+        <label for="siteName">Site Name</label>
+        <input type="text" id="siteName" required placeholder="e.g., AniList">
+      </div>
+      <div class="form-group">
+        <label for="siteUrl">URL</label>
+        <input type="url" id="siteUrl" required placeholder="https://anilist.co">
+      </div>
+      <div class="form-group">
+        <label for="siteCategory">Category</label>
+        <select id="siteCategory" required>
+          <option value="Anime">Anime</option>
+          <option value="Movies">Movies</option>
+          <option value="TV">TV Shows</option>
+          <option value="Multi">Multi-Media / Index</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="siteDesc">Description</label>
+        <textarea id="siteDesc" rows="3" required placeholder="Brief summary of what this site offers..."></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-close="addModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save to Index</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="donateModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Support Kinoku</h2>
+      <button class="close-btn" data-close="donateModal">&times;</button>
+    </div>
+    <p style="font-size: 0.9rem; color: var(--text-muted);">
+      Kinoku is an independent, ad-free web index. Donations help keep the directory maintained and accessible for everyone.
+    </p>
+    <div class="donate-options">
+      <div class="donate-card">
+        <span><strong>Ko-fi</strong> &mdash; One-time tip</span>
+        <a href="https://ko-fi.com" target="_blank" rel="noopener noreferrer">Donate &rarr;</a>
+      </div>
+      <div class="donate-card">
+        <span><strong>GitHub Sponsors</strong> &mdash; Monthly support</span>
+        <a href="https://github.com/sponsors" target="_blank" rel="noopener noreferrer">Sponsor &rarr;</a>
+      </div>
+      <div class="donate-card">
+        <span><strong>PayPal</strong> &mdash; Direct contribution</span>
+        <a href="https://paypal.com" target="_blank" rel="noopener noreferrer">Contribute &rarr;</a>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" data-close="donateModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="importFileInput" accept=".json" style="display: none;">
+
+<script>
+const STORAGE_KEY = 'kinoku_web_index_v1';
+
+const DEFAULT_SITES = [
+  {
+    id: '1',
+    name: 'AniList',
+    url: 'https://anilist.co',
+    category: 'Anime',
+    desc: 'Modern anime and manga tracking database with seasonal charts, stats, and community lists.'
+  },
+  {
+    id: '2',
+    name: 'MyAnimeList',
+    url: 'https://myanimelist.net',
+    category: 'Anime',
+    desc: 'Comprehensive anime and manga catalog, user reviews, episode forums, and popularity rankings.'
+  },
+  {
+    id: '3',
+    name: 'TMDB (The Movie Database)',
+    url: 'https://www.themoviedb.org',
+    category: 'Multi',
+    desc: 'Community-built metadata database for movies, television series, cast credits, and streaming availability.'
+  },
+  {
+    id: '4',
+    name: 'Letterboxd',
+    url: 'https://letterboxd.com',
+    category: 'Movies',
+    desc: 'Social film discovery platform for logging watched movies, building lists, and reading reviews.'
+  },
+  {
+    id: '5',
+    name: 'Trakt',
+    url: 'https://trakt.tv',
+    category: 'TV',
+    desc: 'Automatic watch-history tracker and release calendar for television episodes and feature films.'
+  },
+  {
+    id: '6',
+    name: 'JustWatch',
+    url: 'https://www.justwatch.com',
+    category: 'Multi',
+    desc: 'Streaming search engine showing where movies, TV shows, and anime are legally available to watch.'
+  }
+];
+
+let sites = [];
+let activeCategory = 'All';
+let searchQuery = '';
+
+function loadSites() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    try {
+      sites = JSON.parse(saved);
+    } catch (e) {
+      sites = [...DEFAULT_SITES];
+    }
+  } else {
+    sites = [...DEFAULT_SITES];
+    saveSites();
+  }
+}
+
+function saveSites() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(sites));
+}
+
+function extractDomain(url) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch (e) {
+    return url;
+  }
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function renderTable() {
+  const tbody = document.getElementById('indexTableBody');
+  const emptyState = document.getElementById('emptyState');
+  const countLabel = document.getElementById('entryCount');
+
+  const filtered = sites.filter(site => {
+    const matchesCat = activeCategory === 'All' || site.category === activeCategory;
+    const q = searchQuery.toLowerCase();
+    const matchesQuery =
+      site.name.toLowerCase().includes(q) ||
+      site.url.toLowerCase().includes(q) ||
+      site.desc.toLowerCase().includes(q) ||
+      site.category.toLowerCase().includes(q);
+    return matchesCat && matchesQuery;
+  });
+
+  countLabel.textContent = `${filtered.length} ${filtered.length === 1 ? 'site' : 'sites'} indexed`;
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '';
+    emptyState.style.display = 'block';
+    return;
+  }
+
+  emptyState.style.display = 'none';
+  tbody.innerHTML = filtered.map(site => `
+    <tr>
+      <td>
+        <a class="site-link" href="${escapeHtml(site.url)}" target="_blank" rel="noopener noreferrer">
+          ${escapeHtml(site.name)} &#8599;
+        </a>
+        <span class="site-domain">${escapeHtml(extractDomain(site.url))}</span>
+      </td>
+      <td>
+        <span class="badge badge-${escapeHtml(site.category)}">${escapeHtml(site.category)}</span>
+      </td>
+      <td class="desc-cell">${escapeHtml(site.desc)}</td>
+      <td class="action-cell">
+        <button class="btn-delete" data-id="${escapeHtml(site.id)}" title="Remove entry">Remove</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function toggleDropdown(menuId) {
+  document.querySelectorAll('.dropdown-menu').forEach(menu => {
+    if (menu.id !== menuId) menu.classList.remove('open');
+  });
+  document.getElementById(menuId).classList.toggle('open');
+}
+
+function openModal(modalId) {
+  document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+  document.getElementById(modalId).classList.add('open');
+}
+
+function closeModal(modalId) {
+  document.getElementById(modalId).classList.remove('open');
+}
+
+document.getElementById('catDropdownBtn').addEventListener('click', e => {
+  e.stopPropagation();
+  toggleDropdown('catDropdownMenu');
+});
+
+document.getElementById('manageDropdownBtn').addEventListener('click', e => {
+  e.stopPropagation();
+  toggleDropdown('manageDropdownMenu');
+});
+
+document.addEventListener('click', () => {
+  document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+});
+
+document.querySelectorAll('#catDropdownMenu .dropdown-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    activeCategory = btn.dataset.cat;
+    document.getElementById('currentCatLabel').textContent = activeCategory;
+    document.querySelectorAll('#catDropdownMenu .dropdown-item').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderTable();
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchQuery = e.target.value.trim();
+  renderTable();
+});
+
+document.getElementById('resetHome').addEventListener('click', e => {
+  e.preventDefault();
+  activeCategory = 'All';
+  searchQuery = '';
+  document.getElementById('searchInput').value = '';
+  document.getElementById('currentCatLabel').textContent = 'All';
+  document.querySelectorAll('#catDropdownMenu .dropdown-item').forEach(b => {
+    b.classList.toggle('active', b.dataset.cat === 'All');
+  });
+  renderTable();
+});
+
+document.getElementById('openAddModalBtn').addEventListener('click', () => openModal('addModal'));
+document.getElementById('quickAddBtn').addEventListener('click', () => openModal('addModal'));
+document.getElementById('openDonateBtn').addEventListener('click', () => openModal('donateModal'));
+
+document.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => closeModal(btn.dataset.close));
+});
+
+document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+  backdrop.addEventListener('click', e => {
+    if (e.target === backdrop) backdrop.classList.remove('open');
+  });
+});
+
+document.getElementById('addSiteForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('siteName').value.trim();
+  const url = document.getElementById('siteUrl').value.trim();
+  const category = document.getElementById('siteCategory').value;
+  const desc = document.getElementById('siteDesc').value.trim();
+
+  if (!name || !url || !desc) return;
+
+  sites.unshift({
+    id: Date.now().toString(),
+    name,
+    url,
+    category,
+    desc
+  });
+
+  saveSites();
+  renderTable();
+  e.target.reset();
+  closeModal('addModal');
+});
+
+document.getElementById('indexTableBody').addEventListener('click', e => {
+  if (e.target.classList.contains('btn-delete')) {
+    const id = e.target.dataset.id;
+    sites = sites.filter(s => s.id !== id);
+    saveSites();
+    renderTable();
+  }
+});
+
+document.getElementById('exportJsonBtn').addEventListener('click', () => {
+  const dataStr = JSON.stringify(sites, null, 2);
+  const blob = new Blob([dataStr], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'kinoku-index.json';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById('importJsonBtn').addEventListener('click', () => {
+  document.getElementById('importFileInput').click();
+});
+
+document.getElementById('importFileInput').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = event => {
+    try {
+      const imported = JSON.parse(event.target.result);
+      if (Array.isArray(imported)) {
+        sites = imported;
+        saveSites();
+        renderTable();
+      }
+    } catch (err) {
+      alert('Invalid JSON file.');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+document.getElementById('resetDefaultBtn').addEventListener('click', () => {
+  sites = [...DEFAULT_SITES];
+  saveSites();
+  renderTable();
+});
+
+loadSites();
+renderTable();
+</script>
 </body>
 </html>
