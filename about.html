@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kinoku</title>
+<title>About — Kinoku</title>
 <style>
 :root {
   --bg: #0e1014;
@@ -18,24 +18,6 @@
   --donate-hover: #c94e36;
   --discord: #5865F2;
   --discord-hover: #4752c4;
-  --tag-movietv: #392948;
-  --tag-movietv-text: #c58af9;
-  --tag-anime: #243757;
-  --tag-anime-text: #8ab4f8;
-  --tag-hentai: #472438;
-  --tag-hentai-text: #f48fb1;
-  --tag-index: #1e3b35;
-  --tag-index-text: #78d9ec;
-  --tag-torrets: #3a3022;
-  --tag-torrets-text: #f6ad55;
-  --tag-forums: #2b3828;
-  --tag-forums-text: #9ae6b4;
-  --score-green: #1e3a2f;
-  --score-green-text: #81c995;
-  --score-yellow: #3d331e;
-  --score-yellow-text: #fdd663;
-  --score-red: #3f2224;
-  --score-red-text: #f28b82;
 }
 
 * {
@@ -48,7 +30,7 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.55;
+  line-height: 1.6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -121,13 +103,6 @@ header {
   color: var(--text);
   background-color: var(--surface-alt);
   text-decoration: none;
-}
-
-.nav-link.active {
-  color: var(--text);
-  background-color: var(--surface-alt);
-  border-color: var(--border);
-  font-weight: 600;
 }
 
 .nav-actions {
@@ -214,353 +189,128 @@ header {
 }
 
 main {
-  max-width: 1100px;
+  max-width: 920px;
   width: 100%;
   margin: 0 auto;
-  padding: 24px 20px 48px;
+  padding: 28px 20px 52px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .panel {
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 22px 24px;
-  margin-bottom: 24px;
+  padding: 24px 26px;
 }
 
-.intro-about {
-  margin-bottom: 18px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
-}
-
-.intro-about h1 {
-  font-size: 1.25rem;
-  margin-bottom: 6px;
-}
-
-.intro-about p {
-  color: var(--text-muted);
-  font-size: 0.92rem;
-}
-
-.browser-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-top: 12px;
-  font-size: 0.85rem;
-}
-
-.browser-pill {
-  background-color: var(--surface-alt);
-  border: 1px solid var(--border);
-  padding: 4px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.browser-pill:hover {
-  border-color: var(--accent);
-  text-decoration: none;
-}
-
-.guidelines-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-@media (min-width: 780px) {
-  .guidelines-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.guide-box {
-  background-color: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 16px;
-}
-
-.guide-box h2 {
-  font-size: 0.98rem;
+.panel h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   margin-bottom: 10px;
-  color: var(--text);
 }
 
-.guide-list {
-  list-style: none;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  display: grid;
-  gap: 6px;
-}
-
-.guide-list li {
-  padding-left: 14px;
-  position: relative;
-}
-
-.guide-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-}
-
-.score-dot {
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  margin-right: 6px;
-}
-
-.dot-green { background-color: #81c995; }
-.dot-yellow { background-color: #fdd663; }
-.dot-red { background-color: #f28b82; }
-
-.page-card {
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.page-card h1 {
-  font-size: 1.3rem;
-  margin-bottom: 8px;
-}
-
-.page-card p.sub {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-bottom: 18px;
-}
-
-.policy-section {
-  background-color: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 16px;
+.panel h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
   margin-bottom: 14px;
 }
 
-.policy-section:last-child {
+.panel p {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  margin-bottom: 12px;
+}
+
+.panel p:last-child {
   margin-bottom: 0;
 }
 
-.policy-section h2 {
-  font-size: 1rem;
-  margin-bottom: 6px;
-  color: var(--text);
+.purpose-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 16px;
 }
 
-.policy-section p {
-  font-size: 0.88rem;
-  color: var(--text-muted);
+@media (min-width: 720px) {
+  .purpose-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.form-group {
-  margin-bottom: 14px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.84rem;
-  color: var(--text-muted);
-  margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group select {
-  width: 100%;
+.purpose-box {
   background-color: var(--bg);
   border: 1px solid var(--border);
-  color: var(--text);
-  padding: 9px 12px;
   border-radius: 6px;
-  font-size: 0.92rem;
-  font-family: inherit;
-  outline: none;
+  padding: 15px 16px;
 }
 
-.form-group input:focus,
-.form-group select:focus {
-  border-color: var(--accent);
+.purpose-box h3 {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
 }
 
-.page-header-bar {
+.purpose-box p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+.faq-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 18px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.page-title-wrap {
-  display: flex;
-  align-items: baseline;
+  flex-direction: column;
   gap: 10px;
 }
 
-.page-title-wrap h2 {
-  font-size: 1.2rem;
+details.faq-item {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+
+details.faq-item[open] {
+  border-color: #3a4150;
+}
+
+details.faq-item summary {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+details.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+details.faq-item summary::after {
+  content: "+";
+  font-size: 1.1rem;
+  color: var(--accent);
   font-weight: 700;
 }
 
-.entry-count {
-  font-size: 0.85rem;
-  color: var(--text-muted);
+details.faq-item[open] summary::after {
+  content: "−";
 }
 
-.site-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
-  gap: 14px;
-}
-
-.site-card {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 15px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 12px;
-  transition: border-color 0.15s, background-color 0.15s;
-}
-
-.site-card:hover {
-  border-color: #3a4150;
-  background-color: var(--surface-alt);
-}
-
-.site-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.site-link {
-  color: var(--text);
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  word-break: break-word;
-}
-
-.site-link:hover {
-  color: var(--accent);
-  text-decoration: underline;
-}
-
-.site-domain {
-  display: block;
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-
-.site-card-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+details.faq-item .faq-answer {
+  margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid var(--border);
-}
-
-.badges-wrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.badge {
-  display: inline-block;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 0.74rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.badge-MovieTV {
-  background-color: var(--tag-movietv);
-  color: var(--tag-movietv-text);
-}
-
-.badge-Anime {
-  background-color: var(--tag-anime);
-  color: var(--tag-anime-text);
-}
-
-.badge-Hentai {
-  background-color: var(--tag-hentai);
-  color: var(--tag-hentai-text);
-}
-
-.badge-Index {
-  background-color: var(--tag-index);
-  color: var(--tag-index-text);
-}
-
-.badge-Torrets {
-  background-color: var(--tag-torrets);
-  color: var(--tag-torrets-text);
-}
-
-.badge-Forums {
-  background-color: var(--tag-forums);
-  color: var(--tag-forums-text);
-}
-
-.score-Green {
-  background-color: var(--score-green);
-  color: var(--score-green-text);
-}
-
-.score-Yellow {
-  background-color: var(--score-yellow);
-  color: var(--score-yellow-text);
-}
-
-.score-Red {
-  background-color: var(--score-red);
-  color: var(--score-red-text);
-}
-
-.btn-delete {
-  background: none;
-  border: 1px solid transparent;
-  color: var(--text-muted);
-  padding: 3px 7px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.78rem;
-}
-
-.btn-delete:hover {
-  color: #ff7b72;
-  border-color: rgba(255, 123, 114, 0.3);
-  background-color: rgba(255, 123, 114, 0.08);
-}
-
-.empty-state {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  text-align: center;
-  padding: 44px 20px;
+  font-size: 0.88rem;
   color: var(--text-muted);
 }
 
@@ -671,27 +421,32 @@ footer {
   justify-content: center;
   gap: 16px;
 }
+
+.footer-links a.active {
+  color: var(--text);
+  font-weight: 600;
+}
 </style>
 </head>
 <body>
 
 <header>
   <div class="nav-container">
-    <a href="#about" class="brand" data-page="About">
+    <a href="index.html" class="brand">
       <span class="brand-title">Kinoku</span>
     </a>
 
     <nav class="center-nav">
-      <a href="#movies-tv" class="nav-link" data-page="Movies/TV">Movies/TV</a>
-      <a href="#anime" class="nav-link" data-page="Anime">Anime</a>
-      <a href="#hentai" class="nav-link" data-page="Hentai">Hentai</a>
-      <a href="#index" class="nav-link" data-page="Index">Index</a>
-      <a href="#torrets" class="nav-link" data-page="Torrets">Torrets</a>
-      <a href="#forums" class="nav-link" data-page="Forums">Forums</a>
+      <a href="movies-tv.html" class="nav-link">Movies/TV</a>
+      <a href="anime.html" class="nav-link">Anime</a>
+      <a href="hentai.html" class="nav-link">Hentai</a>
+      <a href="index.html" class="nav-link">Index</a>
+      <a href="torrets.html" class="nav-link">Torrets</a>
+      <a href="forums.html" class="nav-link">Forums</a>
     </nav>
 
     <div class="nav-actions">
-      <a href="#submit" class="btn btn-primary" data-page="Submit">Submit Site</a>
+      <a href="submit.html" class="btn btn-primary">Submit Site</a>
       <button class="btn btn-donate" id="openDonateBtn" type="button">&#9829; Donate</button>
       <a class="btn btn-discord" href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord</a>
     </div>
@@ -699,148 +454,75 @@ footer {
 </header>
 
 <main>
-  <div id="aboutView">
-    <section class="panel">
-      <div class="intro-about">
-        <h1>About Kinoku</h1>
-        <p>
-          Kinoku is a curated web index of websites for watching and tracking Movies, TV Shows, and Anime. When visiting external websites listed on Kinoku, always use an ad-blocker or a privacy browser with built-in ad-blocking:
-        </p>
-        <div class="browser-bar">
-          <a class="browser-pill" href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin (Ad-Blocker)</a>
-          <a class="browser-pill" href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave Browser</a>
-          <a class="browser-pill" href="https://www.firefox.com/" target="_blank" rel="noopener noreferrer">Firefox</a>
-          <a class="browser-pill" href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">DuckDuckGo Browser</a>
-          <a class="browser-pill" href="https://browsehere.net/en/" target="_blank" rel="noopener noreferrer">BrowseHere (Android/Google TV)</a>
-        </div>
-      </div>
+  <section class="panel">
+    <h1>About Kinoku</h1>
+    <p>
+      Kinoku is an open, community-curated web index built to help people find working websites for Movies, TV Shows, Anime, Hentai, Torrents, and Forums in one organized place.
+    </p>
+    <p>
+      Instead of relying on outdated bookmarks or spammy search results, Kinoku organizes direct links by category and rates each site's ad behavior so you know what to expect before you click.
+    </p>
 
-      <div class="guidelines-grid">
-        <div class="guide-box">
-          <h2>Minimum requirements for best free streaming:</h2>
-          <ul class="guide-list">
-            <li>100% Free</li>
-            <li>1080p or 720p</li>
-            <li>NO account required</li>
-            <li>NO geoblocking</li>
-            <li>Mobile friendly</li>
-            <li>Works with ad-blocker</li>
-            <li>English website</li>
-            <li>Easy to start watching</li>
-            <li>Easy to find S02E03</li>
-            <li>New movies/tv shows</li>
-            <li>Old movies/tv shows</li>
-            <li>Not hosted on free subdomain</li>
-            <li>I would personally use it daily</li>
-          </ul>
-        </div>
-
-        <div class="guide-box">
-          <h2>Ad-score explained:</h2>
-          <ul class="guide-list">
-            <li><span class="score-dot dot-green"></span>Pop ads are not detected.</li>
-            <li><span class="score-dot dot-yellow"></span>Pop ads are mostly blocked. May have captcha. Ad-blocker may interfere.</li>
-            <li><span class="score-dot dot-red"></span>Pop ads may redirect from current page. Ad-blocker may interfere. Intrusive ads.</li>
-            <li>Test is done with Adblock Plus and <a href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin</a> on desktop, and <a href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">DuckDuckGo</a> browser on mobile.</li>
-            <li>For more comprehensive ad-blocking, use <a href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave</a> browser on mobile. I also recommend <a href="https://browsehere.net/en/" target="_blank" rel="noopener noreferrer">BrowseHere</a> for Google/Android TV.</li>
-            <li>How ads are implemented may change over time so always use an ad-blocker (or <a href="https://www.firefox.com/" target="_blank" rel="noopener noreferrer">Firefox</a> + uBlock Origin) when visiting these websites.</li>
-          </ul>
-        </div>
+    <div class="purpose-grid">
+      <div class="purpose-box">
+        <h3>Why Kinoku Exists</h3>
+        <p>Sites go down, change domains, or get flooded with intrusive ads. Kinoku keeps an updated, easy-to-browse list of active sites.</p>
       </div>
-    </section>
-  </div>
-
-  <div id="submitView" style="display: none;">
-    <section class="panel page-card">
-      <h1>Submit a Website</h1>
-      <p class="sub">Add a site to the Kinoku index by entering its name, URL, category, and ad-score.</p>
-      <form id="submitSiteForm">
-        <div class="form-group">
-          <label for="siteName">Site Name</label>
-          <input type="text" id="siteName" required placeholder="e.g., AniList">
-        </div>
-        <div class="form-group">
-          <label for="siteUrl">URL</label>
-          <input type="url" id="siteUrl" required placeholder="https://anilist.co">
-        </div>
-        <div class="form-group">
-          <label for="siteCategory">Category</label>
-          <select id="siteCategory" required>
-            <option value="Movies/TV">Movies/TV</option>
-            <option value="Anime">Anime</option>
-            <option value="Hentai">Hentai</option>
-            <option value="Index">Index</option>
-            <option value="Torrets">Torrets</option>
-            <option value="Forums">Forums</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="siteAdScore">Ad-Score</label>
-          <select id="siteAdScore" required>
-            <option value="Green">Green — No pop ads detected</option>
-            <option value="Yellow">Yellow — Mostly blocked / may have captcha</option>
-            <option value="Red">Red — Pop ads may redirect / intrusive</option>
-          </select>
-        </div>
-        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px;">
-          <a href="#about" class="btn">Cancel</a>
-          <button type="submit" class="btn btn-primary">Add to Index</button>
-        </div>
-      </form>
-    </section>
-  </div>
-
-  <div id="policyView" style="display: none;">
-    <section class="panel page-card">
-      <h1>Privacy Policy</h1>
-      <p class="sub">How Kinoku handles user data and third-party websites.</p>
-      <div class="policy-section">
-        <h2>Zero Data Collection</h2>
-        <p>
-          Kinoku does not require user registration, accounts, or personal information. Any sites you add locally are saved strictly in your own browser storage and are never transmitted to any server.
-        </p>
+      <div class="purpose-box">
+        <h3>Community Driven</h3>
+        <p>Anyone can suggest new websites or report broken links and annoying pop-ups through the Submit Site page or Discord.</p>
       </div>
-      <div class="policy-section">
-        <h2>External Links &amp; Third-Party Sites</h2>
-        <p>
-          Kinoku links to external third-party websites that have their own independent privacy policies, tracking scripts, and advertisements. We strongly recommend using an ad-blocker or privacy browser when visiting any external link.
-        </p>
-      </div>
-    </section>
-  </div>
-
-  <div id="termsView" style="display: none;">
-    <section class="panel page-card">
-      <h1>Terms of Service</h1>
-      <p class="sub">Rules and legal disclaimers for using the Kinoku directory.</p>
-      <div class="policy-section">
-        <h2>No Hosting or Streaming Disclaimer</h2>
-        <p>
-          Kinoku operates strictly as a search index and link directory. Kinoku does not host, upload, store, stream, or distribute any movies, television shows, anime, or video files on its servers. All media is hosted by independent third-party platforms outside of our control.
-        </p>
-      </div>
-      <div class="policy-section">
-        <h2>User Responsibility &amp; Copyright</h2>
-        <p>
-          By accessing Kinoku, you agree that you are solely responsible for your use of external links and for complying with all applicable laws in your jurisdiction. For copyright or content removal requests, please contact the respective third-party hosting website directly.
-        </p>
-      </div>
-    </section>
-  </div>
-
-  <div id="categoryView" style="display: none;">
-    <div class="page-header-bar">
-      <div class="page-title-wrap">
-        <h2 id="pageHeading">Movies/TV</h2>
-        <span class="entry-count" id="entryCount">0 sites</span>
+      <div class="purpose-box">
+        <h3>No Accounts or Bloat</h3>
+        <p>No sign-ups, no paywalls, and no tracking. Just open a category, pick a site, and browse safely with an ad-blocker.</p>
       </div>
     </div>
+  </section>
 
-    <div class="site-grid" id="siteGrid"></div>
-    <div class="empty-state" id="emptyState" style="display: none;">
-      No websites added to this category yet.
+  <section class="panel">
+    <h2>Frequently Asked Questions (FAQ)</h2>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>Does Kinoku host or stream any movies, anime, or videos?</summary>
+        <div class="faq-answer">
+          No. Kinoku is strictly a web directory and link index. We do not host, upload, store, or stream any video files or media on our servers. All links lead to external third-party websites.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is Kinoku free to use?</summary>
+        <div class="faq-answer">
+          Yes, 100% free. You do not need to create an account or pay anything to browse the index. Donations are completely optional and only go toward keeping the site maintained.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Why do I need an ad-blocker or specific browser?</summary>
+        <div class="faq-answer">
+          Many free third-party streaming and torrent sites rely on aggressive pop-up ads or redirects. Using an ad-blocker like <a href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin</a> or a privacy browser like <a href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave</a>, <a href="https://www.firefox.com/" target="_blank" rel="noopener noreferrer">Firefox</a>, <a href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">DuckDuckGo</a>, or <a href="https://browsehere.net/en/" target="_blank" rel="noopener noreferrer">BrowseHere</a> blocks those ads and keeps your browsing safe.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How do I submit a website or report a dead link?</summary>
+        <div class="faq-answer">
+          Click the <a href="submit.html">Submit Site</a> button in the top right corner to add a website to a category, or join our Discord server to report broken links, domain changes, or ad-score updates.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What are the different categories on Kinoku?</summary>
+        <div class="faq-answer">
+          <strong>Movies/TV:</strong> Streaming and tracking sites for films and television series.<br>
+          <strong>Anime:</strong> Streaming, database, and seasonal anime sites.<br>
+          <strong>Hentai:</strong> Adult anime streaming and archive sites.<br>
+          <strong>Index:</strong> Other directories, search engines, and aggregators.<br>
+          <strong>Torrets:</strong> Public and semi-private torrent indexes.<br>
+          <strong>Forums:</strong> Community discussion boards and release threads.
+        </div>
+      </details>
     </div>
-  </div>
+  </section>
 </main>
 
 <footer>
@@ -848,9 +530,9 @@ footer {
     Disclaimer: Kinoku is strictly a web index and does not host, upload, stream, or store any movies, TV shows, anime, or video files on our servers. All links lead to external third-party sites.
   </div>
   <div class="footer-links">
-    <a href="#about">About</a>
-    <a href="#privacy-policy">Privacy Policy</a>
-    <a href="#terms">Terms of Service</a>
+    <a href="about.html" class="active">About</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
   </div>
 </footer>
 
@@ -880,170 +562,6 @@ footer {
 </div>
 
 <script>
-const STORAGE_KEY = 'kinoku_web_index_v5';
-
-const DEFAULT_SITES = [
-  { id: '1', name: 'TMDB', url: 'https://www.themoviedb.org', category: 'Movies/TV', adScore: 'Green' },
-  { id: '2', name: 'Letterboxd', url: 'https://letterboxd.com', category: 'Movies/TV', adScore: 'Green' },
-  { id: '3', name: 'AniList', url: 'https://anilist.co', category: 'Anime', adScore: 'Green' },
-  { id: '4', name: 'MyAnimeList', url: 'https://myanimelist.net', category: 'Anime', adScore: 'Green' },
-  { id: '5', name: 'JustWatch', url: 'https://www.justwatch.com', category: 'Index', adScore: 'Green' },
-  { id: '6', name: 'Nyaa', url: 'https://nyaa.si', category: 'Torrets', adScore: 'Green' }
-];
-
-const HASH_TO_PAGE = {
-  '#about': 'About',
-  '#submit': 'Submit',
-  '#privacy-policy': 'Privacy Policy',
-  '#terms': 'Terms',
-  '#movies-tv': 'Movies/TV',
-  '#anime': 'Anime',
-  '#hentai': 'Hentai',
-  '#index': 'Index',
-  '#torrets': 'Torrets',
-  '#forums': 'Forums'
-};
-
-const PAGE_TO_HASH = {
-  'About': '#about',
-  'Submit': '#submit',
-  'Privacy Policy': '#privacy-policy',
-  'Terms': '#terms',
-  'Movies/TV': '#movies-tv',
-  'Anime': '#anime',
-  'Hentai': '#hentai',
-  'Index': '#index',
-  'Torrets': '#torrets',
-  'Forums': '#forums'
-};
-
-let sites = [];
-let activePage = 'About';
-let lastCategory = 'Movies/TV';
-
-function loadSites() {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved) {
-    try {
-      sites = JSON.parse(saved);
-    } catch (e) {
-      sites = [...DEFAULT_SITES];
-    }
-  } else {
-    sites = [...DEFAULT_SITES];
-    saveSites();
-  }
-}
-
-function saveSites() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(sites));
-}
-
-function extractDomain(url) {
-  try {
-    return new URL(url).hostname.replace(/^www\./, '');
-  } catch (e) {
-    return url;
-  }
-}
-
-function escapeHtml(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
-
-function getBadgeClass(category) {
-  if (category === 'Movies/TV') return 'badge-MovieTV';
-  return 'badge-' + category;
-}
-
-function setPage(page) {
-  activePage = page;
-
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.classList.toggle('active', link.dataset.page === page);
-  });
-
-  const aboutView = document.getElementById('aboutView');
-  const submitView = document.getElementById('submitView');
-  const policyView = document.getElementById('policyView');
-  const termsView = document.getElementById('termsView');
-  const categoryView = document.getElementById('categoryView');
-
-  aboutView.style.display = 'none';
-  submitView.style.display = 'none';
-  policyView.style.display = 'none';
-  termsView.style.display = 'none';
-  categoryView.style.display = 'none';
-
-  if (page === 'About') {
-    aboutView.style.display = 'block';
-  } else if (page === 'Submit') {
-    document.getElementById('siteCategory').value = lastCategory;
-    submitView.style.display = 'block';
-  } else if (page === 'Privacy Policy') {
-    policyView.style.display = 'block';
-  } else if (page === 'Terms') {
-    termsView.style.display = 'block';
-  } else {
-    lastCategory = page;
-    categoryView.style.display = 'block';
-    document.getElementById('pageHeading').textContent = page;
-    renderGrid();
-  }
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function syncFromHash() {
-  const hash = window.location.hash.toLowerCase();
-  const matchedPage = HASH_TO_PAGE[hash] || 'About';
-  setPage(matchedPage);
-}
-
-function renderGrid() {
-  const grid = document.getElementById('siteGrid');
-  const emptyState = document.getElementById('emptyState');
-  const countLabel = document.getElementById('entryCount');
-
-  const filtered = sites.filter(site => site.category === activePage);
-
-  countLabel.textContent = `${filtered.length} ${filtered.length === 1 ? 'site' : 'sites'}`;
-
-  if (filtered.length === 0) {
-    grid.innerHTML = '';
-    emptyState.style.display = 'block';
-    return;
-  }
-
-  emptyState.style.display = 'none';
-  grid.innerHTML = filtered.map(site => {
-    const score = site.adScore || 'Green';
-    return `
-      <div class="site-card">
-        <div class="site-card-top">
-          <div>
-            <a class="site-link" href="${escapeHtml(site.url)}" target="_blank" rel="noopener noreferrer">
-              ${escapeHtml(site.name)} &#8599;
-            </a>
-            <span class="site-domain">${escapeHtml(extractDomain(site.url))}</span>
-          </div>
-        </div>
-        <div class="site-card-bottom">
-          <div class="badges-wrap">
-            <span class="badge ${escapeHtml(getBadgeClass(site.category))}">${escapeHtml(site.category)}</span>
-            <span class="badge score-${escapeHtml(score)}">Ad-Score: ${escapeHtml(score)}</span>
-          </div>
-          <button class="btn-delete" data-id="${escapeHtml(site.id)}" title="Remove site">Remove</button>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-window.addEventListener('hashchange', syncFromHash);
-
 document.getElementById('openDonateBtn').addEventListener('click', () => {
   document.getElementById('donateModal').classList.add('open');
 });
@@ -1059,40 +577,6 @@ document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
     if (e.target === backdrop) backdrop.classList.remove('open');
   });
 });
-
-document.getElementById('submitSiteForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const name = document.getElementById('siteName').value.trim();
-  const url = document.getElementById('siteUrl').value.trim();
-  const category = document.getElementById('siteCategory').value;
-  const adScore = document.getElementById('siteAdScore').value;
-
-  if (!name || !url) return;
-
-  sites.unshift({
-    id: Date.now().toString(),
-    name,
-    url,
-    category,
-    adScore
-  });
-
-  saveSites();
-  e.target.reset();
-  window.location.hash = PAGE_TO_HASH[category] || '#about';
-});
-
-document.getElementById('siteGrid').addEventListener('click', e => {
-  if (e.target.classList.contains('btn-delete')) {
-    const id = e.target.dataset.id;
-    sites = sites.filter(s => s.id !== id);
-    saveSites();
-    renderGrid();
-  }
-});
-
-loadSites();
-syncFromHash();
 </script>
 </body>
 </html>
