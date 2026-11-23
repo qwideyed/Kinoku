@@ -18,12 +18,14 @@
   --donate-hover: #c94e36;
   --tag-anime: #243757;
   --tag-anime-text: #8ab4f8;
-  --tag-movies: #392948;
-  --tag-movies-text: #c58af9;
-  --tag-tv: #1e3b35;
-  --tag-tv-text: #78d9ec;
-  --tag-multi: #2f333d;
-  --tag-multi-text: #bdc1c6;
+  --tag-movietv: #392948;
+  --tag-movietv-text: #c58af9;
+  --tag-hentai: #472438;
+  --tag-hentai-text: #f48fb1;
+  --tag-index: #1e3b35;
+  --tag-index-text: #78d9ec;
+  --tag-torrets: #3a3022;
+  --tag-torrets-text: #f6ad55;
   --score-green: #1e3a2f;
   --score-green-text: #81c995;
   --score-yellow: #3d331e;
@@ -68,17 +70,22 @@ header {
 .nav-container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 20px;
-  height: 58px;
-  display: flex;
+  padding: 10px 20px;
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
 }
 
 .brand {
   text-decoration: none;
   color: var(--text);
+  justify-self: start;
+}
+
+.brand:hover {
+  text-decoration: none;
 }
 
 .brand-title {
@@ -87,14 +94,55 @@ header {
   letter-spacing: -0.02em;
 }
 
+.center-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background-color: var(--surface-alt);
+  text-decoration: none;
+}
+
+.nav-link.active {
+  color: var(--text);
+  background-color: var(--surface-alt);
+  border-color: var(--border);
+  font-weight: 600;
+}
+
 .nav-actions {
+  justify-self: end;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.dropdown {
-  position: relative;
+@media (max-width: 740px) {
+  .nav-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .center-nav {
+    grid-column: 1 / -1;
+    order: 3;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+  }
 }
 
 .btn {
@@ -137,45 +185,6 @@ header {
 .btn-donate:hover {
   background-color: var(--donate-hover);
   border-color: var(--donate-hover);
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  min-width: 190px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  display: none;
-  flex-direction: column;
-  padding: 6px;
-  z-index: 200;
-}
-
-.dropdown-menu.open {
-  display: flex;
-}
-
-.dropdown-item {
-  background: none;
-  border: none;
-  color: var(--text);
-  text-align: left;
-  padding: 8px 12px;
-  font-size: 0.875rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.dropdown-item:hover {
-  background-color: var(--surface-alt);
-}
-
-.dropdown-item.active {
-  color: var(--accent);
-  font-weight: 600;
 }
 
 main {
@@ -291,7 +300,7 @@ main {
 .dot-yellow { background-color: #fdd663; }
 .dot-red { background-color: #f28b82; }
 
-.controls-bar {
+.page-header-bar {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -300,30 +309,18 @@ main {
   justify-content: space-between;
 }
 
-.search-box {
-  flex: 1;
-  min-width: 240px;
-}
-
-.search-box input {
-  width: 100%;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 9px 14px;
-  border-radius: 6px;
-  font-size: 0.92rem;
-  outline: none;
-}
-
-.search-box input:focus {
-  border-color: var(--accent);
-}
-
-.stats-bar {
+.page-title-wrap {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.page-title-wrap h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.entry-count {
   font-size: 0.85rem;
   color: var(--text-muted);
 }
@@ -408,19 +405,24 @@ main {
   color: var(--tag-anime-text);
 }
 
-.badge-Movies {
-  background-color: var(--tag-movies);
-  color: var(--tag-movies-text);
+.badge-MovieTV {
+  background-color: var(--tag-movietv);
+  color: var(--tag-movietv-text);
 }
 
-.badge-TV {
-  background-color: var(--tag-tv);
-  color: var(--tag-tv-text);
+.badge-Hentai {
+  background-color: var(--tag-hentai);
+  color: var(--tag-hentai-text);
 }
 
-.badge-Multi {
-  background-color: var(--tag-multi);
-  color: var(--tag-multi-text);
+.badge-Index {
+  background-color: var(--tag-index);
+  color: var(--tag-index-text);
+}
+
+.badge-Torrets {
+  background-color: var(--tag-torrets);
+  color: var(--tag-torrets-text);
 }
 
 .score-Green {
@@ -593,24 +595,19 @@ footer {
 
 <header>
   <div class="nav-container">
-    <a href="#" class="brand" id="resetHome">
+    <a href="#all" class="brand" data-page="All">
       <span class="brand-title">Kinoku</span>
     </a>
 
-    <div class="nav-actions">
-      <div class="dropdown">
-        <button class="btn" id="catDropdownBtn" type="button">
-          Category: <strong id="currentCatLabel">All</strong> &#9662;
-        </button>
-        <div class="dropdown-menu" id="catDropdownMenu">
-          <button class="dropdown-item active" data-cat="All">All Entries</button>
-          <button class="dropdown-item" data-cat="Anime">Anime</button>
-          <button class="dropdown-item" data-cat="Movies">Movies</button>
-          <button class="dropdown-item" data-cat="TV">TV Shows</button>
-          <button class="dropdown-item" data-cat="Multi">Multi-Media</button>
-        </div>
-      </div>
+    <nav class="center-nav">
+      <a href="#anime" class="nav-link" data-page="Anime">Anime</a>
+      <a href="#movie-tv" class="nav-link" data-page="Movie/TV">Movie/TV</a>
+      <a href="#hentai" class="nav-link" data-page="Hentai">Hentai</a>
+      <a href="#index" class="nav-link" data-page="Index">Index</a>
+      <a href="#torrets" class="nav-link" data-page="Torrets">Torrets</a>
+    </nav>
 
+    <div class="nav-actions">
       <button class="btn btn-donate" id="openDonateBtn" type="button">&#9829; Donate</button>
     </div>
   </div>
@@ -665,19 +662,17 @@ footer {
     </div>
   </section>
 
-  <div class="controls-bar">
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Search indexed websites by name, domain, or category...">
+  <div class="page-header-bar">
+    <div class="page-title-wrap">
+      <h2 id="pageHeading">All Websites</h2>
+      <span class="entry-count" id="entryCount">0 sites</span>
     </div>
-    <div class="stats-bar">
-      <span id="entryCount">0 sites</span>
-      <button class="btn btn-primary" id="quickAddBtn" type="button">+ Add Website</button>
-    </div>
+    <button class="btn btn-primary" id="quickAddBtn" type="button">+ Add Website</button>
   </div>
 
   <div class="site-grid" id="siteGrid"></div>
   <div class="empty-state" id="emptyState" style="display: none;">
-    No websites match your current filter.
+    No websites added to this category yet.
   </div>
 </main>
 
@@ -704,9 +699,10 @@ footer {
         <label for="siteCategory">Category</label>
         <select id="siteCategory" required>
           <option value="Anime">Anime</option>
-          <option value="Movies">Movies</option>
-          <option value="TV">TV Shows</option>
-          <option value="Multi">Multi-Media</option>
+          <option value="Movie/TV">Movie/TV</option>
+          <option value="Hentai">Hentai</option>
+          <option value="Index">Index</option>
+          <option value="Torrets">Torrets</option>
         </select>
       </div>
       <div class="form-group">
@@ -751,20 +747,28 @@ footer {
 </div>
 
 <script>
-const STORAGE_KEY = 'kinoku_web_index_v2';
+const STORAGE_KEY = 'kinoku_web_index_v3';
 
 const DEFAULT_SITES = [
   { id: '1', name: 'AniList', url: 'https://anilist.co', category: 'Anime', adScore: 'Green' },
   { id: '2', name: 'MyAnimeList', url: 'https://myanimelist.net', category: 'Anime', adScore: 'Green' },
-  { id: '3', name: 'TMDB', url: 'https://www.themoviedb.org', category: 'Multi', adScore: 'Green' },
-  { id: '4', name: 'Letterboxd', url: 'https://letterboxd.com', category: 'Movies', adScore: 'Green' },
-  { id: '5', name: 'Trakt', url: 'https://trakt.tv', category: 'TV', adScore: 'Green' },
-  { id: '6', name: 'JustWatch', url: 'https://www.justwatch.com', category: 'Multi', adScore: 'Green' }
+  { id: '3', name: 'TMDB', url: 'https://www.themoviedb.org', category: 'Movie/TV', adScore: 'Green' },
+  { id: '4', name: 'Letterboxd', url: 'https://letterboxd.com', category: 'Movie/TV', adScore: 'Green' },
+  { id: '5', name: 'JustWatch', url: 'https://www.justwatch.com', category: 'Index', adScore: 'Green' },
+  { id: '6', name: 'Nyaa', url: 'https://nyaa.si', category: 'Torrets', adScore: 'Green' }
 ];
 
+const HASH_TO_PAGE = {
+  '#all': 'All',
+  '#anime': 'Anime',
+  '#movie-tv': 'Movie/TV',
+  '#hentai': 'Hentai',
+  '#index': 'Index',
+  '#torrets': 'Torrets'
+};
+
 let sites = [];
-let activeCategory = 'All';
-let searchQuery = '';
+let activePage = 'All';
 
 function loadSites() {
   const saved = localStorage.getItem(STORAGE_KEY);
@@ -798,20 +802,32 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+function getBadgeClass(category) {
+  if (category === 'Movie/TV') return 'badge-MovieTV';
+  return 'badge-' + category;
+}
+
+function setPage(page) {
+  activePage = page;
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.toggle('active', link.dataset.page === page);
+  });
+  document.getElementById('pageHeading').textContent = page === 'All' ? 'All Websites' : page;
+  renderGrid();
+}
+
+function syncFromHash() {
+  const hash = window.location.hash.toLowerCase();
+  const matchedPage = HASH_TO_PAGE[hash] || 'All';
+  setPage(matchedPage);
+}
+
 function renderGrid() {
   const grid = document.getElementById('siteGrid');
   const emptyState = document.getElementById('emptyState');
   const countLabel = document.getElementById('entryCount');
 
-  const filtered = sites.filter(site => {
-    const matchesCat = activeCategory === 'All' || site.category === activeCategory;
-    const q = searchQuery.toLowerCase();
-    const matchesQuery =
-      site.name.toLowerCase().includes(q) ||
-      site.url.toLowerCase().includes(q) ||
-      site.category.toLowerCase().includes(q);
-    return matchesCat && matchesQuery;
-  });
+  const filtered = sites.filter(site => activePage === 'All' || site.category === activePage);
 
   countLabel.textContent = `${filtered.length} ${filtered.length === 1 ? 'site' : 'sites'}`;
 
@@ -836,7 +852,7 @@ function renderGrid() {
         </div>
         <div class="site-card-bottom">
           <div class="badges-wrap">
-            <span class="badge badge-${escapeHtml(site.category)}">${escapeHtml(site.category)}</span>
+            <span class="badge ${escapeHtml(getBadgeClass(site.category))}">${escapeHtml(site.category)}</span>
             <span class="badge score-${escapeHtml(score)}">Ad-Score: ${escapeHtml(score)}</span>
           </div>
           <button class="btn-delete" data-id="${escapeHtml(site.id)}" title="Remove site">Remove</button>
@@ -847,7 +863,9 @@ function renderGrid() {
 }
 
 function openModal(modalId) {
-  document.getElementById('catDropdownMenu').classList.remove('open');
+  if (modalId === 'addModal' && activePage !== 'All') {
+    document.getElementById('siteCategory').value = activePage;
+  }
   document.getElementById(modalId).classList.add('open');
 }
 
@@ -855,41 +873,7 @@ function closeModal(modalId) {
   document.getElementById(modalId).classList.remove('open');
 }
 
-document.getElementById('catDropdownBtn').addEventListener('click', e => {
-  e.stopPropagation();
-  document.getElementById('catDropdownMenu').classList.toggle('open');
-});
-
-document.addEventListener('click', () => {
-  document.getElementById('catDropdownMenu').classList.remove('open');
-});
-
-document.querySelectorAll('#catDropdownMenu .dropdown-item').forEach(btn => {
-  btn.addEventListener('click', () => {
-    activeCategory = btn.dataset.cat;
-    document.getElementById('currentCatLabel').textContent = activeCategory;
-    document.querySelectorAll('#catDropdownMenu .dropdown-item').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderGrid();
-  });
-});
-
-document.getElementById('searchInput').addEventListener('input', e => {
-  searchQuery = e.target.value.trim();
-  renderGrid();
-});
-
-document.getElementById('resetHome').addEventListener('click', e => {
-  e.preventDefault();
-  activeCategory = 'All';
-  searchQuery = '';
-  document.getElementById('searchInput').value = '';
-  document.getElementById('currentCatLabel').textContent = 'All';
-  document.querySelectorAll('#catDropdownMenu .dropdown-item').forEach(b => {
-    b.classList.toggle('active', b.dataset.cat === 'All');
-  });
-  renderGrid();
-});
+window.addEventListener('hashchange', syncFromHash);
 
 document.getElementById('quickAddBtn').addEventListener('click', () => openModal('addModal'));
 document.getElementById('openDonateBtn').addEventListener('click', () => openModal('donateModal'));
@@ -937,7 +921,7 @@ document.getElementById('siteGrid').addEventListener('click', e => {
 });
 
 loadSites();
-renderGrid();
+syncFromHash();
 </script>
 </body>
 </html>
