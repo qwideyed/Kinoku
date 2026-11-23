@@ -271,14 +271,6 @@ main {
   margin-bottom: 8px;
 }
 
-.policy-section h3 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-top: 12px;
-  margin-bottom: 4px;
-}
-
 .policy-section p {
   font-size: 0.89rem;
   color: var(--text-muted);
@@ -484,23 +476,23 @@ footer {
     <h1>Privacy Policy</h1>
     <span class="last-updated">Effective Date: November 23, 2026</span>
     <p class="intro">
-      Kinoku is engineered around data minimization and user anonymity. We believe browsing a web directory should never require surrendering your identity, email address, or browsing habits. This Privacy Policy details our exact technical practices, what stays on your device, and how external third-party links operate once you leave Kinoku.
+      Kinoku is an independent, read-only web index maintained by Qwideyed. We built Kinoku around strict data minimization and user anonymity—browsing the directory never requires an account, personal details, or invasive tracking. This Privacy Policy explains how the site works, what happens when you submit a site suggestion or report a link, and how external websites operate once you leave Kinoku.
     </p>
 
     <div class="toc-box">
       <div class="toc-title">Quick Navigation</div>
       <div class="toc-grid">
         <a href="#sec-1">1. Zero Personal Data Collection</a>
-        <a href="#sec-2">2. Data Summary Table</a>
-        <a href="#sec-3">3. Browser Local Storage</a>
-        <a href="#sec-4">4. Cookies, Trackers &amp; Fingerprinting</a>
-        <a href="#sec-5">5. Static Hosting &amp; Network Logs</a>
-        <a href="#sec-6">6. External Third-Party Websites</a>
-        <a href="#sec-7">7. Recommended Privacy Tools</a>
-        <a href="#sec-8">8. Donations &amp; Payment Processors</a>
-        <a href="#sec-9">9. Site Submissions &amp; Discord</a>
-        <a href="#sec-10">10. Age Restrictions &amp; Adult Sections</a>
-        <a href="#sec-11">11. Your Control &amp; Data Deletion</a>
+        <a href="#sec-2">2. Data Handling Overview</a>
+        <a href="#sec-3">3. How the Directory Is Maintained</a>
+        <a href="#sec-4">4. Site Suggestions &amp; Link Reports</a>
+        <a href="#sec-5">5. Cookies, Trackers &amp; Fingerprinting</a>
+        <a href="#sec-6">6. Static Hosting &amp; Network Logs</a>
+        <a href="#sec-7">7. External Third-Party Websites</a>
+        <a href="#sec-8">8. Recommended Privacy Tools</a>
+        <a href="#sec-9">9. Donations &amp; Payment Processors</a>
+        <a href="#sec-10">10. Discord Community</a>
+        <a href="#sec-11">11. Age Restrictions &amp; Adult Sections</a>
         <a href="#sec-12">12. Changes to This Policy</a>
       </div>
     </div>
@@ -509,12 +501,12 @@ footer {
       <div class="policy-section" id="sec-1">
         <h2>1. Zero Personal Data Collection</h2>
         <p>
-          Kinoku does not operate a user registration system, login portal, or backend user database. We do not ask for, collect, harvest, rent, or sell personally identifiable information (PII). Specifically, Kinoku never collects:
+          Kinoku does not operate a user registration system, login portal, or user profile database. We do not ask for, collect, harvest, rent, or sell personally identifiable information (PII). Specifically, Kinoku never collects:
         </p>
         <ul>
-          <li>Real names, usernames, or account passwords</li>
+          <li>Real names, account passwords, or personal login credentials</li>
           <li>Email addresses, phone numbers, or physical mailing addresses</li>
-          <li>Watch history, search queries, clickstream logs, or outbound link telemetry</li>
+          <li>Watch history, search queries, clickstream logs, or outbound click telemetry</li>
           <li>Device hardware identifiers, GPS location data, or contact lists</li>
         </ul>
       </div>
@@ -522,65 +514,74 @@ footer {
       <div class="policy-section" id="sec-2">
         <h2>2. Data Handling Overview</h2>
         <p>
-          The table below summarizes how different categories of technical and user-generated information are handled on Kinoku:
+          The table below summarizes how different categories of information are handled across Kinoku:
         </p>
         <table class="policy-table">
           <thead>
             <tr>
               <th>Data Type</th>
               <th>Collected by Kinoku?</th>
-              <th>Storage Location</th>
+              <th>How It Is Handled</th>
               <th>Purpose</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Account / Login Info</td>
+              <td>User Accounts / Profiles</td>
               <td>No</td>
-              <td>None</td>
-              <td>No accounts exist on Kinoku</td>
+              <td>Not applicable</td>
+              <td>Kinoku requires zero sign-ups or accounts</td>
             </tr>
             <tr>
-              <td>Custom Added Sites</td>
-              <td>No (Client-Side Only)</td>
-              <td>Your Browser <code>localStorage</code></td>
-              <td>Saves your personal directory edits locally</td>
+              <td>Site Suggestions &amp; Reports</td>
+              <td>Voluntary Only</td>
+              <td>Reviewed manually by Qwideyed</td>
+              <td>Evaluating new sites, updating ad-scores, or archiving dead links</td>
             </tr>
             <tr>
               <td>Tracking Cookies</td>
               <td>No</td>
-              <td>None</td>
-              <td>We do not track users across sessions or sites</td>
+              <td>None set by Kinoku</td>
+              <td>We do not track visitors across sessions or external sites</td>
             </tr>
             <tr>
               <td>Standard HTTP Metadata</td>
               <td>Processed by CDN/Host</td>
               <td>Temporary Infrastructure Logs</td>
-              <td>Delivering static HTML/CSS/JS files &amp; DDoS mitigation</td>
+              <td>Delivering static HTML/CSS/JS files &amp; DDoS protection</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="policy-section" id="sec-3">
-        <h2>3. Browser Local Storage</h2>
+        <h2>3. How the Directory Is Maintained</h2>
         <p>
-          When you add or remove website entries using the Submit Site page or category cards, Kinoku stores that list inside your browser's built-in <code>localStorage</code> API on your own device.
-        </p>
-        <p>
-          This storage mechanism operates 100% locally inside your web browser. Kinoku has no server endpoint that reads, syncs, or backs up your <code>localStorage</code> data. If you switch browsers, use a private/incognito window, or clear your site data, your custom entries will reset to the default directory list.
+          All website listings, categories, ad-score ratings, and archived entries on Kinoku are curated and updated directly by the site developer (Qwideyed). Visitors cannot directly modify, edit, or delete entries on the live site; all directory updates are published directly through reviewed site builds.
         </p>
       </div>
 
       <div class="policy-section" id="sec-4">
-        <h2>4. Cookies, Trackers &amp; Browser Fingerprinting</h2>
+        <h2>4. Site Suggestions &amp; Link Reports</h2>
+        <p>
+          Visitors may voluntarily submit a website suggestion for review or report a broken link, domain change, or intrusive pop-up ad using the Submit Site page or official community channels.
+        </p>
+        <ul>
+          <li>Only submit public website URLs, category details, and ad behavior notes.</li>
+          <li>Do not include your real name, email address, IP address, or any sensitive personal information in suggestion or report fields.</li>
+          <li>Submitted URLs are reviewed manually before being added, updated, or archived in the public directory.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section" id="sec-5">
+        <h2>5. Cookies, Trackers &amp; Browser Fingerprinting</h2>
         <p>
           Kinoku does not set first-party tracking cookies, third-party advertising cookies, social media pixels, or canvas/audio fingerprinting scripts. We do not use Google Analytics, Meta Pixel, or behavioral ad networks anywhere on the site.
         </p>
       </div>
 
-      <div class="policy-section" id="sec-5">
-        <h2>5. Static Hosting &amp; Standard Network Logs</h2>
+      <div class="policy-section" id="sec-6">
+        <h2>6. Static Hosting &amp; Standard Network Logs</h2>
         <p>
           Kinoku is served as static web files. When your browser requests a page from our hosting provider or content delivery network (CDN), standard network metadata—such as your IP address, browser user-agent string, requested file path, and timestamp—is automatically transmitted over HTTPS as part of normal internet routing.
         </p>
@@ -589,8 +590,8 @@ footer {
         </p>
       </div>
 
-      <div class="policy-section" id="sec-6">
-        <h2>6. External Third-Party Websites &amp; Outbound Links</h2>
+      <div class="policy-section" id="sec-7">
+        <h2>7. External Third-Party Websites &amp; Outbound Links</h2>
         <p>
           Kinoku is strictly a web index. Every website listed under Movies/TV, Anime, Hentai, Index, Torrets, and Forums is an independent third-party platform owned and operated outside of Kinoku's control.
         </p>
@@ -599,8 +600,8 @@ footer {
         </p>
       </div>
 
-      <div class="policy-section" id="sec-7">
-        <h2>7. Recommended Privacy &amp; Ad-Blocking Tools</h2>
+      <div class="policy-section" id="sec-8">
+        <h2>8. Recommended Privacy &amp; Ad-Blocking Tools</h2>
         <p>
           Because third-party streaming, torrent, and forum websites frequently run intrusive advertising or tracking scripts, we strongly advise every visitor to use content-blocking software before opening external links:
         </p>
@@ -612,43 +613,31 @@ footer {
         </ul>
       </div>
 
-      <div class="policy-section" id="sec-8">
-        <h2>8. Donations &amp; External Payment Processors</h2>
+      <div class="policy-section" id="sec-9">
+        <h2>9. Donations &amp; External Payment Processors</h2>
         <p>
           If you choose to support Kinoku via the Donate button, you will be redirected to an external payment platform (such as Ko-fi or PayPal). Kinoku never sees, processes, or stores your credit card number, bank details, or billing address. All payment transactions are governed exclusively by the privacy policy and security standards of the chosen payment provider.
         </p>
       </div>
 
-      <div class="policy-section" id="sec-9">
-        <h2>9. Community Submissions &amp; Discord</h2>
+      <div class="policy-section" id="sec-10">
+        <h2>10. Discord Community</h2>
         <p>
-          If you share a website URL, category suggestion, or ad-score report via our Discord server or community channels, any message you post is subject to Discord's own Terms of Service and Privacy Policy. Please only share public website URLs and never post private, sensitive, or personally identifying details in public channels.
+          If you join our Discord server to discuss sites, suggest additions, or report dead links, your participation is governed by Discord's own Terms of Service and Privacy Policy. Please avoid sharing private or personally identifying information in public server channels.
         </p>
       </div>
 
-      <div class="policy-section" id="sec-10">
-        <h2>10. Age Restrictions &amp; Adult Categories</h2>
+      <div class="policy-section" id="sec-11">
+        <h2>11. Age Restrictions &amp; Adult Categories</h2>
         <p>
           Kinoku is intended for general audiences, and certain sections of the index (such as the Hentai category) link to adult-oriented external websites intended strictly for individuals who are at least 18 years of age (or the age of legal majority in their jurisdiction). Kinoku does not knowingly collect any data from minors.
         </p>
       </div>
 
-      <div class="policy-section" id="sec-11">
-        <h2>11. Your Control &amp; How to Clear Local Data</h2>
-        <p>
-          Because Kinoku does not hold any of your personal data on a remote server, you have direct, immediate control over all data stored on your device:
-        </p>
-        <ul>
-          <li>You can remove individual saved entries anytime by clicking the <strong>Remove</strong> button on any site card.</li>
-          <li>You can wipe all locally saved Kinoku preferences at once by clearing your browser's site data / <code>localStorage</code> for this domain.</li>
-          <li>You can block network-level referrers by using a privacy-focused browser or enabling strict tracking protection.</li>
-        </ul>
-      </div>
-
       <div class="policy-section" id="sec-12">
         <h2>12. Updates to This Privacy Policy</h2>
         <p>
-          We reserve the right to revise or expand this Privacy Policy whenever new features, categories, or hosting configurations are introduced to Kinoku. Any updates take effect immediately upon being published on this page, reflected by the Effective Date at the top.
+          Qwideyed reserves the right to revise or expand this Privacy Policy whenever new features, categories, or hosting configurations are introduced to Kinoku. Any updates take effect immediately upon being published on this page, reflected by the Effective Date at the top.
         </p>
       </div>
     </div>
@@ -660,3 +649,53 @@ footer {
     Disclaimer: Kinoku is strictly a web index and does not host, upload, stream, or store any movies, TV shows, anime, or video files on our servers. All links lead to external third-party sites.
   </div>
   <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="privacy-policy.html" class="active">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="donateModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Support Kinoku</h2>
+      <button class="close-btn" data-close="donateModal">&times;</button>
+    </div>
+    <p style="font-size: 0.9rem; color: var(--text-muted);">
+      Kinoku is an independent web index. Donations help keep the site maintained and online.
+    </p>
+    <div class="donate-options">
+      <div class="donate-card">
+        <span><strong>Ko-fi</strong> &mdash; One-time tip</span>
+        <a href="https://ko-fi.com" target="_blank" rel="noopener noreferrer">Donate &rarr;</a>
+      </div>
+      <div class="donate-card">
+        <span><strong>PayPal</strong> &mdash; Direct contribution</span>
+        <a href="https://paypal.com" target="_blank" rel="noopener noreferrer">Contribute &rarr;</a>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" data-close="donateModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('openDonateBtn').addEventListener('click', () => {
+  document.getElementById('donateModal').classList.add('open');
+});
+
+document.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById(btn.dataset.close).classList.remove('open');
+  });
+});
+
+document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+  backdrop.addEventListener('click', e => {
+    if (e.target === backdrop) backdrop.classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
