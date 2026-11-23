@@ -1,1 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movies/TV — Kinoku</title>
+<style>
+:root {
+  --bg: #0e1014;
+  --surface: #151820;
+  --surface-alt: #1b1f29;
+  --border: #262b36;
+  --text: #e6e8ec;
+  --text-muted: #969dab;
+  --accent: #4c8bf5;
+  --accent-hover: #3b7ae4;
+  --donate: #e05d44;
+  --donate-hover: #c94e36;
+  --discord: #5865F2;
+  --discord-hover: #4752c4;
+  --tag-movietv: #392948;
+  --tag-movietv-text: #c58af9;
+  --score-green: #1e3a2f;
+  --score-green-text: #81c995;
+  --score-yellow: #3d331e;
+  --score-yellow-text: #fdd663;
+  --score-red: #3f2224;
+  --score-red-text: #f28b82;
+}
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.55;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  justify-self: start;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.center-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 6px 11px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background-color: var(--surface-alt);
+  text-decoration: none;
+}
+
+.nav-link.active {
+  color: var(--text);
+  background-color: var(--surface-alt);
+  border-color: var(--border);
+  font-weight: 600;
+}
+
+.nav-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-actions .btn {
+  min-width: 102px;
+}
+
+@media (max-width: 960px) {
+  .nav-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .center-nav {
+    grid-column: 1 / -1;
+    order: 3;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+  }
+}
+
+.btn {
+  background-color: var(--surface-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  height: 34px;
+  padding: 0 13px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  background-color: #232836;
+  border-color: #3a4150;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-donate {
+  background-color: var(--donate);
+  border-color: var(--donate);
+  color: #ffffff;
+}
+
+.btn-donate:hover {
+  background-color: var(--donate-hover);
+  border-color: var(--donate-hover);
+}
+
+.btn-discord {
+  background-color: var(--discord);
+  border-color: var(--discord);
+  color: #ffffff;
+}
+
+.btn-discord:hover {
+  background-color: var(--discord-hover);
+  border-color: var(--discord-hover);
+}
+
+main {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 20px 52px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.notice-bar {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 13px 16px;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.notice-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mini-pill {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.mini-pill:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.page-header-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-title-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.page-title-wrap h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.entry-count {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filter-btn {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 6px 11px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 0.15s, color 0.15s, background-color 0.15s;
+}
+
+.filter-btn:hover {
+  color: var(--text);
+  border-color: #3a4150;
+}
+
+.filter-btn.active {
+  background-color: var(--surface-alt);
+  border-color: var(--accent);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.score-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-green { background-color: #81c995; }
+.dot-yellow { background-color: #fdd663; }
+.dot-red { background-color: #f28b82; }
+
+.site-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  gap: 14px;
+}
+
+.site-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 15px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.site-card:hover {
+  border-color: #3a4150;
+  background-color: var(--surface-alt);
+}
+
+.site-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.site-link {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.site-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.site-domain {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.site-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.badges-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-MovieTV {
+  background-color: var(--tag-movietv);
+  color: var(--tag-movietv-text);
+}
+
+.score-Green {
+  background-color: var(--score-green);
+  color: var(--score-green-text);
+}
+
+.score-Yellow {
+  background-color: var(--score-yellow);
+  color: var(--score-yellow-text);
+}
+
+.score-Red {
+  background-color: var(--score-red);
+  color: var(--score-red-text);
+}
+
+.report-link {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  padding: 3px 7px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+
+.report-link:hover {
+  color: var(--text);
+  border-color: var(--border);
+  background-color: var(--bg);
+  text-decoration: none;
+}
+
+.empty-state {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+  padding: 44px 20px;
+  color: var(--text-muted);
+}
+
+details.archive-panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 8px;
+}
+
+details.archive-panel summary {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+details.archive-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+details.archive-panel summary::after {
+  content: "+";
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
+details.archive-panel[open] summary::after {
+  content: "−";
+}
+
+.archive-list {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.archive-item {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.archive-tag {
+  font-size: 0.72rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--surface-alt);
+  color: var(--text-muted);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 300;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 440px;
+  padding: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: var(--text);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.donate-options {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.donate-card {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.donate-card span {
+  font-size: 0.88rem;
+}
+
+.donate-card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.donate-card a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 18px 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer-disclaimer {
+  max-width: 820px;
+  margin: 0 auto 8px;
+  line-height: 1.45;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-container">
+    <a href="index.html" class="brand">
+      <span class="brand-title">Kinoku</span>
+    </a>
+
+    <nav class="center-nav">
+      <a href="movies-tv.html" class="nav-link active">Movies/TV</a>
+      <a href="anime.html" class="nav-link">Anime</a>
+      <a href="hentai.html" class="nav-link">Hentai</a>
+      <a href="index.html" class="nav-link">Index</a>
+      <a href="torrets.html" class="nav-link">Torrets</a>
+      <a href="forums.html" class="nav-link">Forums</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="submit.html" class="btn btn-primary">Submit Site</a>
+      <button class="btn btn-donate" id="openDonateBtn" type="button">&#9829; Donate</button>
+      <a class="btn btn-discord" href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="notice-bar">
+    <span>Always use an ad-blocker or privacy browser when opening external streaming links:</span>
+    <div class="notice-tools">
+      <a class="mini-pill" href="https://ublockorigin.com/" target="_blank" rel="noopener noreferrer">uBlock Origin</a>
+      <a class="mini-pill" href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave</a>
+      <a class="mini-pill" href="https://www.firefox.com/" target="_blank" rel="noopener noreferrer">Firefox</a>
+      <a class="mini-pill" href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">DuckDuckGo</a>
+      <a class="mini-pill" href="https://browsehere.net/en/" target="_blank" rel="noopener noreferrer">BrowseHere</a>
+    </div>
+  </div>
+
+  <div class="page-header-bar">
+    <div class="page-title-wrap">
+      <h1>Movies/TV</h1>
+      <span class="entry-count" id="entryCount">0 sites</span>
+    </div>
+
+    <div class="filter-pills">
+      <button type="button" class="filter-btn active" data-score="All">All</button>
+      <button type="button" class="filter-btn" data-score="Green"><span class="score-dot dot-green"></span>Green</button>
+      <button type="button" class="filter-btn" data-score="Yellow"><span class="score-dot dot-yellow"></span>Yellow</button>
+      <button type="button" class="filter-btn" data-score="Red"><span class="score-dot dot-red"></span>Red</button>
+    </div>
+  </div>
+
+  <div class="site-grid" id="siteGrid"></div>
+  <div class="empty-state" id="emptyState" style="display: none;">
+    No Movies/TV sites match the selected Ad-Score filter.
+  </div>
+
+  <details class="archive-panel">
+    <summary>Archived / Offline Sites (<span id="archiveCount">0</span>)</summary>
+    <div class="archive-list" id="archiveList"></div>
+  </details>
+</main>
+
+<footer>
+  <div class="footer-disclaimer">
+    Disclaimer: Kinoku is strictly a web index and does not host, upload, stream, or store any movies, TV shows, anime, or video files on our servers. All links lead to external third-party sites.
+  </div>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="donateModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Support Kinoku</h2>
+      <button class="close-btn" data-close="donateModal">&times;</button>
+    </div>
+    <p style="font-size: 0.9rem; color: var(--text-muted);">
+      Kinoku is an independent web index. Donations help keep the site maintained and online.
+    </p>
+    <div class="donate-options">
+      <div class="donate-card">
+        <span><strong>Ko-fi</strong> &mdash; One-time tip</span>
+        <a href="https://ko-fi.com" target="_blank" rel="noopener noreferrer">Donate &rarr;</a>
+      </div>
+      <div class="donate-card">
+        <span><strong>PayPal</strong> &mdash; Direct contribution</span>
+        <a href="https://paypal.com" target="_blank" rel="noopener noreferrer">Contribute &rarr;</a>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" data-close="donateModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SITES = [
+  { name: 'TMDB', url: 'https://www.themoviedb.org', adScore: 'Green' },
+  { name: 'Letterboxd', url: 'https://letterboxd.com', adScore: 'Green' },
+  { name: 'Trakt', url: 'https://trakt.tv', adScore: 'Green' },
+  { name: 'JustWatch', url: 'https://www.justwatch.com', adScore: 'Green' }
+];
+
+const ARCHIVED_SITES = [
+  { name: 'Soap2Day', domain: 'soap2day.to', status: 'Shut Down' },
+  { name: 'RARBG', domain: 'rarbg.to', status: 'Shut Down' }
+];
+
+let activeScore = 'All';
+
+function extractDomain(url) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch (e) {
+    return url;
+  }
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function renderGrid() {
+  const grid = document.getElementById('siteGrid');
+  const emptyState = document.getElementById('emptyState');
+  const countLabel = document.getElementById('entryCount');
+
+  const filtered = SITES.filter(site => activeScore === 'All' || site.adScore === activeScore);
+
+  countLabel.textContent = `${filtered.length} ${filtered.length === 1 ? 'site' : 'sites'}`;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    emptyState.style.display = 'block';
+    return;
+  }
+
+  emptyState.style.display = 'none';
+  grid.innerHTML = filtered.map(site => {
+    const score = site.adScore || 'Green';
+    return `
+      <div class="site-card">
+        <div class="site-card-top">
+          <div>
+            <a class="site-link" href="${escapeHtml(site.url)}" target="_blank" rel="noopener noreferrer">
+              ${escapeHtml(site.name)} &#8599;
+            </a>
+            <span class="site-domain">${escapeHtml(extractDomain(site.url))}</span>
+          </div>
+        </div>
+        <div class="site-card-bottom">
+          <div class="badges-wrap">
+            <span class="badge badge-MovieTV">Movies/TV</span>
+            <span class="badge score-${escapeHtml(score)}">Ad-Score: ${escapeHtml(score)}</span>
+          </div>
+          <a class="report-link" href="submit.html">Report</a>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderArchive() {
+  const archiveList = document.getElementById('archiveList');
+  const archiveCount = document.getElementById('archiveCount');
+  archiveCount.textContent = ARCHIVED_SITES.length;
+
+  archiveList.innerHTML = ARCHIVED_SITES.map(item => `
+    <div class="archive-item">
+      <span>${escapeHtml(item.name)} (${escapeHtml(item.domain)})</span>
+      <span class="archive-tag">${escapeHtml(item.status)}</span>
+    </div>
+  `).join('');
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeScore = btn.dataset.score;
+    renderGrid();
+  });
+});
+
+document.getElementById('openDonateBtn').addEventListener('click', () => {
+  document.getElementById('donateModal').classList.add('open');
+});
+
+document.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById(btn.dataset.close).classList.remove('open');
+  });
+});
+
+document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+  backdrop.addEventListener('click', e => {
+    if (e.target === backdrop) backdrop.classList.remove('open');
+  });
+});
+
+renderGrid();
+renderArchive();
+</script>
+</body>
+</html>
